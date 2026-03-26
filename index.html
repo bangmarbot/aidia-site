@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aidia — AI That Works For Your Business</title>
+  <meta name="description" content="AI automation for your business. Customer service, lead capture, workflow automation — built in days, not months.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    :root {
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --border: #222;
+      --text: #e5e5e5;
+      --muted: #888;
+      --accent: #3b82f6;
+      --accent-glow: rgba(59, 130, 246, 0.15);
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+
+    /* Nav */
+    nav {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    nav .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+    .logo span { color: var(--accent); }
+    nav a.cta-nav {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border: 1px solid var(--accent);
+      padding: 8px 16px;
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+    nav a.cta-nav:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 80px 0 60px;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+      margin-bottom: 20px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--accent);
+    }
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--muted);
+      max-width: 560px;
+      margin: 0 auto 32px;
+    }
+    .hero-cta {
+      display: inline-flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .btn {
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+    .btn-primary:hover { background: #2563eb; }
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-secondary:hover { border-color: var(--muted); }
+
+    /* Problem */
+    .problem {
+      padding: 60px 0;
+      border-top: 1px solid var(--border);
+    }
+    .problem h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+      letter-spacing: -0.5px;
+    }
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .problem-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+    .problem-card .emoji { font-size: 1.5rem; margin-bottom: 8px; }
+    .problem-card h3 { font-size: 1rem; margin-bottom: 6px; }
+    .problem-card p { font-size: 0.85rem; color: var(--muted); }
+
+    /* Solution */
+    .solution {
+      padding: 60px 0;
+      border-top: 1px solid var(--border);
+    }
+    .solution h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+    .solution > .container > p {
+      color: var(--muted);
+      margin-bottom: 32px;
+      font-size: 1.05rem;
+    }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+    }
+    .step {
+      text-align: center;
+      padding: 24px;
+    }
+    .step-num {
+      width: 40px; height: 40px;
+      background: var(--accent-glow);
+      border: 1px solid var(--accent);
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+    .step h3 { font-size: 1rem; margin-bottom: 6px; }
+    .step p { font-size: 0.85rem; color: var(--muted); }
+
+    /* Demo */
+    .demo {
+      padding: 60px 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    .demo h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+    .demo > .container > p {
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
+    .demo-video {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 48px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    .demo-video a { color: var(--accent); }
+
+    /* Services */
+    .services {
+      padding: 60px 0;
+      border-top: 1px solid var(--border);
+    }
+    .services h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+      letter-spacing: -0.5px;
+    }
+    .service-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .service-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+    .service-item h3 { font-size: 1rem; margin-bottom: 6px; color: var(--accent); }
+    .service-item p { font-size: 0.85rem; color: var(--muted); }
+
+    /* CTA */
+    .cta-section {
+      padding: 80px 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    .cta-section h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .cta-section p {
+      color: var(--muted);
+      margin-bottom: 32px;
+      font-size: 1.05rem;
+    }
+    .cta-section .hero-cta { margin-bottom: 24px; }
+    .contact-info {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    .contact-info a { color: var(--accent); text-decoration: none; }
+
+    /* Footer */
+    footer {
+      padding: 24px 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 2rem; }
+      .hero { padding: 48px 0 40px; }
+      .problem, .solution, .demo, .services, .cta-section { padding: 40px 0; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a href="/" class="logo">aidia<span>.</span></a>
+    <a href="mailto:hello@aidia.uk" class="cta-nav">Get in touch</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <h1>AI that <em>works</em><br>for your business</h1>
+    <p>We build AI agents that handle customer inquiries, capture leads, and automate workflows — so you can focus on growing your business.</p>
+    <div class="hero-cta">
+      <a href="mailto:hello@aidia.uk" class="btn btn-primary">Talk to us</a>
+      <a href="#demo" class="btn btn-secondary">See it in action</a>
+    </div>
+  </div>
+</section>
+
+<section class="problem">
+  <div class="container">
+    <h2>Sound familiar?</h2>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="emoji">💬</div>
+        <h3>Drowning in messages</h3>
+        <p>Customer inquiries pile up on WhatsApp, Instagram, and email. You can't respond fast enough.</p>
+      </div>
+      <div class="problem-card">
+        <div class="emoji">📋</div>
+        <h3>Manual data entry</h3>
+        <p>You're copying customer info from chat to spreadsheet. Every. Single. Time.</p>
+      </div>
+      <div class="problem-card">
+        <div class="emoji">😴</div>
+        <h3>After-hours silence</h3>
+        <p>Customers reach out at night and weekends. Nobody's there to respond. Leads go cold.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="solution">
+  <div class="container">
+    <h2>How it works</h2>
+    <p>We set up AI agents that plug into your existing tools. No coding required.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>We audit your workflow</h3>
+        <p>30-minute call to understand what you need automated</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>We build your agent</h3>
+        <p>Custom AI agent connected to your WhatsApp, Sheets, CRM</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>You go live</h3>
+        <p>AI handles inquiries 24/7. Every conversation logged automatically.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="demo" id="demo">
+  <div class="container">
+    <h2>See it in action</h2>
+    <p>Built in 30 minutes. Works 24/7. Zero coding.</p>
+    <div class="demo-video">
+      🎬 Demo video coming soon<br><br>
+      <a href="https://www.linkedin.com/in/muhamad-muslihh/" target="_blank">Watch the demo on LinkedIn →</a>
+    </div>
+  </div>
+</section>
+
+<section class="services">
+  <div class="container">
+    <h2>What we build</h2>
+    <div class="service-list">
+      <div class="service-item">
+        <h3>AI Customer Agent</h3>
+        <p>Auto-respond to customer inquiries in any language. Works on WhatsApp, web chat, or any platform.</p>
+      </div>
+      <div class="service-item">
+        <h3>Lead Capture</h3>
+        <p>Every conversation automatically logged — name, message, timestamp. No lead falls through the cracks.</p>
+      </div>
+      <div class="service-item">
+        <h3>Workflow Automation</h3>
+        <p>Connect your tools: Sheets, CRM, email, WhatsApp. Automate the repetitive stuff.</p>
+      </div>
+      <div class="service-item">
+        <h3>Custom AI Solutions</h3>
+        <p>Got a specific problem? We'll design an AI solution tailored to your business.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container">
+    <h2>Ready to automate?</h2>
+    <p>Free 30-minute audit. We'll show you exactly what AI can do for your business.</p>
+    <div class="hero-cta">
+      <a href="mailto:hello@aidia.uk" class="btn btn-primary">Get your free audit</a>
+      <a href="https://calendar.notion.so/meet/muhamadmuslih/quickchat" class="btn btn-secondary" target="_blank">Book a call</a>
+    </div>
+    <br>
+    <div class="contact-info">
+      <a href="mailto:hello@aidia.uk">hello@aidia.uk</a> · 
+      <a href="https://www.linkedin.com/in/muhamad-muslihh/" target="_blank">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    © 2026 Aidia. Built with AI.
+  </div>
+</footer>
+
+</body>
+</html>
