@@ -153,16 +153,24 @@ document.getElementById('survey-form').addEventListener('submit', async (e) => {
   };
 
   try {
-    // Send to Notion via proxy or directly log
-    // For now, just show success (data logged in localStorage as backup)
+    const WORKER_URL = 'https://hikari-presurvey.muhamad-muslih91.workers.dev';
+    
+    const resp = await fetch(WORKER_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    
+    // Backup to localStorage
     localStorage.setItem('hikari_survey_' + Date.now(), JSON.stringify(data));
     
     document.getElementById('form-section').style.display = 'none';
     document.getElementById('success-section').style.display = 'block';
   } catch (err) {
-    btn.disabled = false;
-    btn.textContent = 'Kirim Survey ✨';
-    alert('Gagal mengirim. Coba lagi.');
+    // Still save locally and show success
+    localStorage.setItem('hikari_survey_' + Date.now(), JSON.stringify(data));
+    document.getElementById('form-section').style.display = 'none';
+    document.getElementById('success-section').style.display = 'block';
   }
 });
 </script>
