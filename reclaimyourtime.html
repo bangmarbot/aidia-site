@@ -26,7 +26,6 @@
       height: 100vh;
       height: 100dvh;
       overflow-y: scroll;
-      scroll-snap-type: y mandatory;
       -webkit-overflow-scrolling: touch;
     }
 
@@ -43,7 +42,6 @@
       opacity: 0;
       transform: translateY(30px);
       transition: opacity 0.6s ease, transform 0.6s ease;
-      scroll-snap-align: center;
     }
     .slide.visible {
       opacity: 1;
@@ -127,7 +125,6 @@
       opacity: 0;
       transform: translateY(40px);
       transition: opacity 0.8s ease, transform 0.8s ease;
-      scroll-snap-align: center;
     }
     .cta-section.visible {
       opacity: 1;
@@ -346,35 +343,84 @@
   </div>
 </div>
 
-<footer style="scroll-snap-align:center;height:100vh;height:100dvh;display:flex;align-items:center;justify-content:center;">
+<footer style="height:100vh;height:100dvh;display:flex;align-items:center;justify-content:center;">
   © 2026 ReclaimYourTime
 </footer>
 
 </div><!-- end scroll-container -->
 
 <script>
-  // Intersection Observer for scroll reveal
+  const sc = document.querySelector('.scroll-container');
+  const slides = document.querySelectorAll('.slide, .cta-section, footer');
+  let isScrolling = false;
+  let currentSlide = 0;
+
+  // Intersection Observer for fade-in
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
+      if (entry.isIntersecting) entry.target.classList.add('visible');
     });
-  }, { threshold: 0.15 });
+  }, { threshold: 0.15, root: sc });
 
-  document.querySelectorAll('.slide, .cta-section').forEach(el => {
-    observer.observe(el);
+  slides.forEach(el => observer.observe(el));
+
+  // Scroll to specific slide
+  function goTo(index) {
+    if (index < 0 || index >= slides.length) return;
+    isScrolling = true;
+    currentSlide = index;
+    slides[index].scrollIntoView({ behavior: 'smooth', block: 'start' });
+    setTimeout(() => { isScrolling = false; }, 800);
+  }
+
+  // Touch handling
+  let touchStartY = 0;
+  let touchEndY = 0;
+
+  sc.addEventListener('touchstart', (e) => {
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+
+  sc.addEventListener('touchend', (e) => {
+    if (isScrolling) return;
+    touchEndY = e.changedTouches[0].clientY;
+    const diff = touchStartY - touchEndY;
+    if (Math.abs(diff) > 40) {
+      if (diff > 0) goTo(currentSlide + 1); // swipe up
+      else goTo(currentSlide - 1); // swipe down
+    }
+  }, { passive: true });
+
+  // Mouse wheel handling (desktop)
+  let wheelTimeout;
+  sc.addEventListener('wheel', (e) => {
+    if (isScrolling) { e.preventDefault(); return; }
+    e.preventDefault();
+    clearTimeout(wheelTimeout);
+    wheelTimeout = setTimeout(() => {
+      if (e.deltaY > 0) goTo(currentSlide + 1);
+      else goTo(currentSlide - 1);
+    }, 50);
+  }, { passive: false });
+
+  // Keyboard
+  document.addEventListener('keydown', (e) => {
+    if (isScrolling) return;
+    if (e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); goTo(currentSlide + 1); }
+    if (e.key === 'ArrowUp') { e.preventDefault(); goTo(currentSlide - 1); }
   });
 
-  // Remove scroll hint after first scroll
-  const sc = document.querySelector('.scroll-container');
+  // Remove scroll hint
   sc.addEventListener('scroll', () => {
     const hint = document.querySelector('.scroll-hint');
-    if (hint && sc.scrollTop > 100) {
+    if (hint && sc.scrollTop > 50) {
       hint.style.opacity = '0';
       hint.style.transition = 'opacity 0.5s';
     }
   }, { passive: true });
+
+  // Show first slide immediately
+  slides[0].classList.add('visible');
 </script>
 
 </body>
