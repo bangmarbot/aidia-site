@@ -13,195 +13,49 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      overflow: hidden;
+    body {
       font-family: 'Inter', -apple-system, sans-serif;
       background: #0b1120;
       color: #e8e8e8;
     }
-    .scroll-container {
-      height: 100vh;
-      height: 100dvh;
-      overflow-y: scroll;
-      -webkit-overflow-scrolling: touch;
-    }
 
-    /* Each section = full viewport */
-    .slide {
-      min-height: 60vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .section {
       text-align: center;
-      padding: 60px 24px;
-      position: relative;
+      padding: 80px 24px;
+      max-width: 680px;
+      margin: 0 auto;
       opacity: 0;
-      transform: translateY(30px);
+      transform: translateY(20px);
       transition: opacity 0.6s ease, transform 0.6s ease;
     }
-    .slide.full { min-height: 100vh; min-height: 100dvh; }
-    .slide.visible {
+    .section.visible {
       opacity: 1;
       transform: translateY(0);
     }
-    .slide .inner {
-      max-width: 680px;
+
+    /* Hero - full height */
+    .hero {
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 24px;
     }
-
-    /* Background gradients per section */
-    .slide:nth-child(1) { background: linear-gradient(180deg, #0b1120 0%, #0f1a30 100%); }
-    .slide:nth-child(2) { background: linear-gradient(180deg, #0f1a30 0%, #121f38 100%); }
-    .slide:nth-child(3) { background: linear-gradient(180deg, #121f38 0%, #0f1a30 100%); }
-    .slide:nth-child(4) { background: linear-gradient(180deg, #0f1a30 0%, #1a1510 100%); }
-    .slide:nth-child(5) { background: linear-gradient(180deg, #1a1510 0%, #1c1008 100%); }
-    .slide:nth-child(6) { background: linear-gradient(180deg, #1c1008 0%, #0f1a30 100%); }
-    .slide:nth-child(7) { background: linear-gradient(180deg, #0f1a30 0%, #121f38 100%); }
-    .slide:nth-child(8) { background: linear-gradient(180deg, #121f38 0%, #0f1a30 100%); }
-    .slide:nth-child(9) { background: linear-gradient(180deg, #0f1a30 0%, #0b1120 100%); }
-    .slide:nth-child(10) { background: linear-gradient(180deg, #0b1120 0%, #0b1120 100%); }
-
-    /* Typography */
-    .headline {
+    .hero .inner { max-width: 680px; }
+    .hero h1 {
       font-size: clamp(2.5rem, 8vw, 5rem);
       font-weight: 900;
       letter-spacing: -2px;
       line-height: 1.1;
       margin-bottom: 24px;
     }
-    .subtext {
-      font-size: clamp(1rem, 2.5vw, 1.3rem);
+    .hero p {
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
       font-weight: 300;
       color: #8899bb;
       line-height: 1.8;
     }
-    .body-text {
-      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-      font-weight: 300;
-      line-height: 2;
-      color: #c8d0e0;
-    }
-    .emphasis {
-      font-size: clamp(1.6rem, 4vw, 2.4rem);
-      font-weight: 700;
-      line-height: 1.4;
-      color: #fff;
-    }
-    .question {
-      font-size: clamp(1.3rem, 3vw, 1.8rem);
-      font-style: italic;
-      color: #d4a853;
-      line-height: 1.6;
-    }
-    .muted {
-      color: #667799;
-    }
-    .gold {
-      color: #d4a853;
-    }
-    .white {
-      color: #fff;
-    }
-
-    /* Big statement */
-    .big-statement {
-      font-size: clamp(2rem, 6vw, 3.5rem);
-      font-weight: 900;
-      letter-spacing: -1px;
-      line-height: 1.2;
-    }
-
-    /* CTA */
-    .cta-section {
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 40px 24px;
-      background: linear-gradient(180deg, #0b1120 0%, #060a14 100%);
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-    .cta-section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .cta-inner {
-      max-width: 500px;
-    }
-    .cta-inner p {
-      font-size: 1.1rem;
-      color: #8899bb;
-      margin-bottom: 12px;
-      font-weight: 300;
-    }
-    .cta-inner p.lead {
-      font-size: 1.4rem;
-      color: #e8e8e8;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-    .cta-buttons {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      margin-top: 40px;
-    }
-    .cta-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 16px 32px;
-      border-radius: 50px;
-      text-decoration: none;
-      font-size: 1rem;
-      font-weight: 600;
-      transition: all 0.3s;
-      font-family: 'Inter', sans-serif;
-    }
-    .cta-btn.wa {
-      background: #25D366;
-      color: #fff;
-    }
-    .cta-btn.wa:hover {
-      background: #1fb855;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(37,211,102,0.3);
-    }
-    .cta-btn.tiktok {
-      background: #fff;
-      color: #0b1120;
-    }
-    .cta-btn.tiktok:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(255,255,255,0.15);
-    }
-    .cta-btn.fb {
-      background: transparent;
-      color: #8899bb;
-      border: 1px solid #334466;
-    }
-    .cta-btn.fb:hover {
-      border-color: #8899bb;
-      color: #e8e8e8;
-      transform: translateY(-2px);
-    }
-
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 40px 24px;
-      font-size: 0.8rem;
-      color: #334466;
-      background: #060a14;
-    }
-
-    /* Scroll indicator */
     .scroll-hint {
       position: absolute;
       bottom: 32px;
@@ -209,218 +63,180 @@
       transform: translateX(-50%);
       animation: bounce 2s infinite;
       color: #334466;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       letter-spacing: 2px;
-      text-transform: uppercase;
     }
     @keyframes bounce {
       0%, 100% { transform: translateX(-50%) translateY(0); }
       50% { transform: translateX(-50%) translateY(8px); }
     }
+
+    /* Typography */
+    .text { font-size: clamp(1.05rem, 2.5vw, 1.25rem); font-weight: 300; line-height: 1.9; color: #c8d0e0; }
+    .muted { color: #667799; }
+    .gold { color: #d4a853; }
+    .white { color: #fff; }
+    .big { font-size: clamp(1.8rem, 5vw, 3rem); font-weight: 900; letter-spacing: -1px; line-height: 1.2; color: #fff; }
+    .emphasis { font-size: clamp(1.4rem, 3.5vw, 2rem); font-weight: 700; line-height: 1.4; }
+    .question { font-size: clamp(1.2rem, 3vw, 1.6rem); font-style: italic; color: #d4a853; line-height: 1.6; }
+    .highlight { background: rgba(212,168,83,0.1); padding: 20px 24px; border-radius: 8px; display: inline-block; }
+
+    /* Spacer */
+    .spacer { height: 40px; }
+    .spacer-sm { height: 20px; }
+
+    /* Divider */
+    .divider { text-align: center; padding: 20px 0; color: #223344; font-size: 1.2rem; letter-spacing: 8px; }
+
+    /* CTA */
+    .cta { padding: 80px 24px; text-align: center; }
+    .cta p { font-size: 1.1rem; color: #8899bb; margin-bottom: 12px; font-weight: 300; max-width: 480px; margin-left: auto; margin-right: auto; }
+    .cta p.lead { font-size: 1.3rem; color: #e8e8e8; font-weight: 700; margin-bottom: 8px; }
+    .cta-buttons { display: flex; flex-direction: column; gap: 14px; margin-top: 36px; align-items: center; }
+    .cta-btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      padding: 14px 32px; border-radius: 50px; text-decoration: none;
+      font-size: 1rem; font-weight: 600; transition: all 0.3s; font-family: 'Inter', sans-serif;
+      min-width: 260px;
+    }
+    .cta-btn.wa { background: #25D366; color: #fff; }
+    .cta-btn.wa:hover { background: #1fb855; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,211,102,0.3); }
+    .cta-btn.tiktok { background: #fff; color: #0b1120; }
+    .cta-btn.tiktok:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255,255,255,0.15); }
+    .cta-btn.fb { background: transparent; color: #8899bb; border: 1px solid #334466; }
+    .cta-btn.fb:hover { border-color: #8899bb; color: #e8e8e8; transform: translateY(-2px); }
+
+    footer { text-align: center; padding: 40px 24px; font-size: 0.8rem; color: #334466; }
+
+    @media (max-width: 600px) {
+      .section { padding: 60px 20px; }
+      .cta-btn { min-width: 100%; }
+    }
   </style>
 </head>
 <body>
 
-<div class="scroll-container">
-
 <!-- HERO -->
-<div class="slide full" id="s1">
+<div class="hero section" style="opacity:1;transform:none;">
   <div class="inner">
-    <div class="headline">Reclaim<br>Your Time.</div>
-    <p class="subtext">Hidup cuma sekali.<br>Dan waktu nggak akan pernah bisa dibeli —<br>sekalipun harta lu sebesar gunung Rinjani.</p>
+    <h1>Reclaim<br>Your Time.</h1>
+    <p>Hidup cuma sekali.<br>Dan waktu nggak akan pernah bisa dibeli —<br>sekalipun harta lu sebesar gunung Rinjani.</p>
     <div class="scroll-hint">↓ scroll</div>
   </div>
 </div>
 
+<div class="divider">· · ·</div>
+
 <!-- BERSYUKUR -->
-<div class="slide" id="s2">
-  <div class="inner">
-    <p class="body-text">
-      Lu bersyukur. Lu nggak ngeluh.<br><br>
-      <span class="muted">Alhamdulillah, hidup cukup —<br>nggak perlu jauh ngelangkah dan mengeluh.</span><br><br>
-      Kerjaan ada. Keluarga sehat.<br>
-      <span class="muted">Tapi di balik itu semua,<br>ada yang bikin lu gelisah dan nggak lekat.</span>
-    </p>
-  </div>
+<div class="section">
+  <p class="text">Lu bersyukur. Lu nggak ngeluh.</p>
+  <div class="spacer-sm"></div>
+  <p class="text muted">Alhamdulillah, hidup cukup —<br>nggak perlu jauh ngelangkah dan mengeluh.</p>
+  <div class="spacer"></div>
+  <p class="text">Kerjaan ada. Keluarga sehat.</p>
+  <div class="spacer-sm"></div>
+  <p class="text muted">Tapi di balik itu semua,<br>ada yang bikin lu gelisah dan nggak lekat.</p>
 </div>
 
 <!-- BENTAR -->
-<div class="slide" id="s3">
-  <div class="inner">
-    <p class="body-text">
-      Anak ngajak main. <span class="white"><em>"Bentar ya."</em></span><br><br>
-      <span class="muted">Tapi bentar itu nggak pernah dateng —<br>lu tau itu, dan lu diam saja.</span><br><br>
-      Istri cerita soal harinya.<br>
-      <span class="muted">Lu dengerin, tapi pikiran lu<br>masih di kerjaan dan layar-layarnya.</span><br><br>
-      Nyokap bokap makin tua, waktu bareng mereka makin sempit.<br>
-      <span class="muted">Lu pengen sering ketemu,<br>tapi bahkan nelpon aja sering lu skip.</span>
-    </p>
-  </div>
+<div class="section">
+  <p class="text">Anak ngajak main. <span class="white"><em>"Bentar ya."</em></span></p>
+  <div class="spacer-sm"></div>
+  <p class="text muted">Tapi bentar itu nggak pernah dateng —<br>lu tau itu, dan lu diam saja.</p>
+  <div class="spacer"></div>
+  <p class="text">Istri cerita soal harinya.</p>
+  <div class="spacer-sm"></div>
+  <p class="text muted">Lu dengerin, tapi pikiran lu<br>masih di kerjaan dan layar-layarnya.</p>
+  <div class="spacer"></div>
+  <p class="text">Nyokap bokap makin tua, waktu bareng mereka makin sempit.</p>
+  <div class="spacer-sm"></div>
+  <p class="text muted">Lu pengen sering ketemu,<br>tapi bahkan nelpon aja sering lu skip.</p>
 </div>
 
 <!-- IRONI -->
-<div class="slide" id="s4">
-  <div class="inner">
-    <p class="emphasis">
-      Lucu ya —<br>
-      kerja banting tulang buat keluarga.<br><br>
-      <span class="gold">Tapi keluarga yang paling sering lu tinggalin<br>demi dunia dan segala arahnya.</span>
-    </p>
+<div class="section">
+  <div class="highlight">
+    <p class="emphasis">Lucu ya —<br>kerja banting tulang buat keluarga.</p>
+    <div class="spacer-sm"></div>
+    <p class="emphasis gold">Tapi keluarga yang paling sering lu tinggalin<br>demi dunia dan segala arahnya.</p>
   </div>
 </div>
 
 <!-- DIPANGGIL -->
-<div class="slide" id="s5">
-  <div class="inner">
-    <p class="body-text">
-      Habis sholat, lu diem.<br>
-      <span class="muted">Sebelum tidur, lu mikir —<br>dan pertanyaan itu dateng lagi:<br>lirih dan dalam, lu simpan sendiri, lu pendem.</span>
-    </p>
-    <br><br>
-    <p class="question">"Kalau besok gw 'dipanggil'...<br>bekal gw cukup nggak?"</p>
-  </div>
+<div class="section">
+  <p class="text">Habis sholat, lu diem.</p>
+  <div class="spacer-sm"></div>
+  <p class="text muted">Sebelum tidur, lu mikir — dan pertanyaan itu dateng lagi:<br>lirih dan dalam, lu simpan sendiri, lu pendem.</p>
+  <div class="spacer"></div>
+  <p class="question">"Kalau besok gw 'dipanggil'...<br>bekal gw cukup nggak?"</p>
 </div>
 
 <!-- LU KURANG WAKTU -->
-<div class="slide full" id="s6">
-  <div class="inner">
-    <p class="body-text muted">Lu nggak kurang duit.</p>
-    <br>
-    <p class="big-statement">Lu kurang waktu.</p>
-  </div>
+<div class="section">
+  <p class="text muted">Lu nggak kurang duit.</p>
+  <div class="spacer"></div>
+  <p class="big">Lu kurang waktu.</p>
 </div>
 
 <!-- WAKTU BUAT APA -->
-<div class="slide" id="s7">
-  <div class="inner">
-    <p class="body-text">
-      Waktu buat ibadah yang nggak buru-buru.<br><br>
-      <span class="muted">Buat main sama anak tanpa buka HP —<br>buat jadi bapak, bukan cuma sosok yang selalu berlalu.</span><br><br>
-      Buat jadi orang yang bermanfaat — bukan cuma sibuk.<br>
-      <span class="muted">Buat hadir, beneran hadir —<br>bukan cuma fisiknya yang nongol<br>tapi hatinya jauh dan tersungkur.</span>
-    </p>
-  </div>
+<div class="section">
+  <p class="text">Waktu buat ibadah yang nggak buru-buru.</p>
+  <div class="spacer-sm"></div>
+  <p class="text muted">Buat main sama anak tanpa buka HP —<br>buat jadi bapak, bukan cuma sosok yang selalu berlalu.</p>
+  <div class="spacer"></div>
+  <p class="text">Buat jadi orang yang bermanfaat — bukan cuma sibuk.</p>
+  <div class="spacer-sm"></div>
+  <p class="text muted">Buat hadir, beneran hadir —<br>bukan cuma fisiknya yang nongol<br>tapi hatinya jauh dan tersungkur.</p>
 </div>
 
 <!-- NYESEK -->
-<div class="slide full" id="s8">
-  <div class="inner">
-    <p class="body-text muted">Dan ini yang bikin nyesek —<br>yang bikin lu berhenti dan mikir:</p>
-    <br>
-    <p class="big-statement">Waktu nggak bisa dibeli.<br><span class="gold">Berapapun.</span></p>
-  </div>
+<div class="section">
+  <p class="text muted">Dan ini yang bikin nyesek —<br>yang bikin lu berhenti dan mikir:</p>
+  <div class="spacer"></div>
+  <p class="big">Waktu nggak bisa dibeli.<br><span class="gold">Berapapun.</span></p>
 </div>
 
 <!-- TAPI -->
-<div class="slide full" id="s9">
-  <div class="inner">
-    <p class="emphasis">Tapi waktu bisa<br><span class="gold">diambil balik.</span></p>
-    <br><br>
-    <p class="body-text muted">Dari kerjaan yang sebenernya<br>nggak perlu lu kerjain sendiri —<br><br>yang selama ini makan waktu<br>dan bikin lu makin jauh<br>dari yang lu cintai.</p>
-  </div>
+<div class="section">
+  <p class="emphasis white">Tapi waktu bisa<br><span class="gold">diambil balik.</span></p>
+  <div class="spacer"></div>
+  <p class="text muted">Dari kerjaan yang sebenernya<br>nggak perlu lu kerjain sendiri —<br><br>yang selama ini makan waktu<br>dan bikin lu makin jauh<br>dari yang lu cintai.</p>
 </div>
 
 <!-- CTA -->
-<div class="cta-section" id="cta">
-  <div class="cta-inner">
-    <p class="lead">Ini soal pilihan.</p>
-    <p>Pilihan untuk berhenti ngasih waktu lu ke hal yang bisa didelegasikan — dan mulai hadir untuk yang benar-benar bernilai.</p>
-    <br>
-    <p>Kalau lu ngerasa hal yang sama —<br><strong style="color:#e8e8e8">lu nggak sendirian.</strong></p>
-
-    <div class="cta-buttons">
-      <a href="#" class="cta-btn wa" target="_blank">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        Join Komunitas WhatsApp
-      </a>
-      <a href="#" class="cta-btn tiktok" target="_blank">
-        Follow di TikTok
-      </a>
-      <a href="#" class="cta-btn fb" target="_blank">
-        Follow di Facebook
-      </a>
-    </div>
+<div class="cta section">
+  <p class="lead">Ini soal pilihan.</p>
+  <p>Pilihan untuk berhenti ngasih waktu lu ke hal yang bisa didelegasikan — dan mulai hadir untuk yang benar-benar bernilai.</p>
+  <div class="spacer-sm"></div>
+  <p>Kalau lu ngerasa hal yang sama —<br><strong style="color:#e8e8e8">lu nggak sendirian.</strong></p>
+  <div class="cta-buttons">
+    <a href="#" class="cta-btn wa" target="_blank">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Join Komunitas WhatsApp
+    </a>
+    <a href="#" class="cta-btn tiktok" target="_blank">Follow di TikTok</a>
+    <a href="#" class="cta-btn fb" target="_blank">Follow di Facebook</a>
   </div>
 </div>
 
-<footer style="height:100vh;height:100dvh;display:flex;align-items:center;justify-content:center;">
-  © 2026 ReclaimYourTime
-</footer>
-
-</div><!-- end scroll-container -->
+<footer>© 2026 ReclaimYourTime</footer>
 
 <script>
-  const sc = document.querySelector('.scroll-container');
-  const slides = document.querySelectorAll('.slide, .cta-section, footer');
-  let isScrolling = false;
-  let currentSlide = 0;
-
-  // Intersection Observer for fade-in
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) entry.target.classList.add('visible');
     });
-  }, { threshold: 0.15, root: sc });
+  }, { threshold: 0.15 });
 
-  slides.forEach(el => observer.observe(el));
+  document.querySelectorAll('.section:not(.hero)').forEach(el => observer.observe(el));
 
-  // Scroll to specific slide
-  function goTo(index) {
-    if (index < 0 || index >= slides.length) return;
-    isScrolling = true;
-    currentSlide = index;
-    slides[index].scrollIntoView({ behavior: 'smooth', block: 'start' });
-    setTimeout(() => { isScrolling = false; }, 800);
-  }
-
-  // Touch handling
-  let touchStartY = 0;
-  let touchEndY = 0;
-
-  sc.addEventListener('touchstart', (e) => {
-    touchStartY = e.touches[0].clientY;
-  }, { passive: true });
-
-  sc.addEventListener('touchend', (e) => {
-    if (isScrolling) return;
-    touchEndY = e.changedTouches[0].clientY;
-    const diff = touchStartY - touchEndY;
-    if (Math.abs(diff) > 40) {
-      if (diff > 0) goTo(currentSlide + 1); // swipe up
-      else goTo(currentSlide - 1); // swipe down
-    }
-  }, { passive: true });
-
-  // Mouse wheel handling (desktop)
-  let wheelTimeout;
-  sc.addEventListener('wheel', (e) => {
-    if (isScrolling) { e.preventDefault(); return; }
-    e.preventDefault();
-    clearTimeout(wheelTimeout);
-    wheelTimeout = setTimeout(() => {
-      if (e.deltaY > 0) goTo(currentSlide + 1);
-      else goTo(currentSlide - 1);
-    }, 50);
-  }, { passive: false });
-
-  // Keyboard
-  document.addEventListener('keydown', (e) => {
-    if (isScrolling) return;
-    if (e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); goTo(currentSlide + 1); }
-    if (e.key === 'ArrowUp') { e.preventDefault(); goTo(currentSlide - 1); }
-  });
-
-  // Remove scroll hint
-  sc.addEventListener('scroll', () => {
+  window.addEventListener('scroll', () => {
     const hint = document.querySelector('.scroll-hint');
-    if (hint && sc.scrollTop > 50) {
+    if (hint && window.scrollY > 100) {
       hint.style.opacity = '0';
       hint.style.transition = 'opacity 0.5s';
     }
   }, { passive: true });
-
-  // Show first slide immediately
-  slides[0].classList.add('visible');
 </script>
 
 </body>
