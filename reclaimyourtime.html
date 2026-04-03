@@ -13,31 +13,21 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    html, body {
+    body {
       margin: 0;
       padding: 0;
-      height: 100%;
-      overflow: hidden;
       font-family: 'Inter', -apple-system, sans-serif;
       background: #0b1120;
       color: #e8e8e8;
     }
-    .scroll-container {
-      height: 100vh;
-      height: 100dvh;
-      overflow-y: scroll;
-      -webkit-overflow-scrolling: touch;
-    }
 
     /* Each section = full viewport */
     .slide {
-      height: 100vh;
-      height: 100dvh;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 40px 24px;
+      padding: 80px 24px;
       position: relative;
       opacity: 0;
       transform: translateY(30px);
@@ -115,16 +105,15 @@
 
     /* CTA */
     .cta-section {
-      height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 40px 24px;
+      padding: 80px 24px;
       background: linear-gradient(180deg, #0b1120 0%, #060a14 100%);
       opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
     }
     .cta-section.visible {
       opacity: 1;
@@ -221,10 +210,8 @@
 </head>
 <body>
 
-<div class="scroll-container">
-
 <!-- HERO -->
-<div class="slide" id="s1">
+<div class="slide" id="s1" style="min-height:100vh;min-height:100dvh;padding:40px 24px">
   <div class="inner">
     <div class="headline">Reclaim<br>Your Time.</div>
     <p class="subtext">Hidup cuma sekali.<br>Dan waktu nggak akan pernah bisa dibeli —<br>sekalipun harta lu sebesar gunung Rinjani.</p>
@@ -343,84 +330,26 @@
   </div>
 </div>
 
-<footer style="height:100vh;height:100dvh;display:flex;align-items:center;justify-content:center;">
+<footer style="padding:40px 24px;text-align:center;font-size:0.8rem;color:#334466;">
   © 2026 ReclaimYourTime
 </footer>
 
-</div><!-- end scroll-container -->
-
 <script>
-  const sc = document.querySelector('.scroll-container');
-  const slides = document.querySelectorAll('.slide, .cta-section, footer');
-  let isScrolling = false;
-  let currentSlide = 0;
-
-  // Intersection Observer for fade-in
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) entry.target.classList.add('visible');
     });
-  }, { threshold: 0.15, root: sc });
+  }, { threshold: 0.15 });
 
-  slides.forEach(el => observer.observe(el));
+  document.querySelectorAll('.slide, .cta-section').forEach(el => observer.observe(el));
 
-  // Scroll to specific slide
-  function goTo(index) {
-    if (index < 0 || index >= slides.length) return;
-    isScrolling = true;
-    currentSlide = index;
-    slides[index].scrollIntoView({ behavior: 'smooth', block: 'start' });
-    setTimeout(() => { isScrolling = false; }, 800);
-  }
-
-  // Touch handling
-  let touchStartY = 0;
-  let touchEndY = 0;
-
-  sc.addEventListener('touchstart', (e) => {
-    touchStartY = e.touches[0].clientY;
-  }, { passive: true });
-
-  sc.addEventListener('touchend', (e) => {
-    if (isScrolling) return;
-    touchEndY = e.changedTouches[0].clientY;
-    const diff = touchStartY - touchEndY;
-    if (Math.abs(diff) > 40) {
-      if (diff > 0) goTo(currentSlide + 1); // swipe up
-      else goTo(currentSlide - 1); // swipe down
-    }
-  }, { passive: true });
-
-  // Mouse wheel handling (desktop)
-  let wheelTimeout;
-  sc.addEventListener('wheel', (e) => {
-    if (isScrolling) { e.preventDefault(); return; }
-    e.preventDefault();
-    clearTimeout(wheelTimeout);
-    wheelTimeout = setTimeout(() => {
-      if (e.deltaY > 0) goTo(currentSlide + 1);
-      else goTo(currentSlide - 1);
-    }, 50);
-  }, { passive: false });
-
-  // Keyboard
-  document.addEventListener('keydown', (e) => {
-    if (isScrolling) return;
-    if (e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); goTo(currentSlide + 1); }
-    if (e.key === 'ArrowUp') { e.preventDefault(); goTo(currentSlide - 1); }
-  });
-
-  // Remove scroll hint
-  sc.addEventListener('scroll', () => {
+  window.addEventListener('scroll', () => {
     const hint = document.querySelector('.scroll-hint');
-    if (hint && sc.scrollTop > 50) {
+    if (hint && window.scrollY > 100) {
       hint.style.opacity = '0';
       hint.style.transition = 'opacity 0.5s';
     }
   }, { passive: true });
-
-  // Show first slide immediately
-  slides[0].classList.add('visible');
 </script>
 
 </body>
