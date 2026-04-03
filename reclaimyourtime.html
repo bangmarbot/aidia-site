@@ -31,18 +31,18 @@
 
     /* Each section = full viewport */
     .slide {
-      height: 100vh;
-      height: 100dvh;
+      min-height: 60vh;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 40px 24px;
+      padding: 60px 24px;
       position: relative;
       opacity: 0;
       transform: translateY(30px);
       transition: opacity 0.6s ease, transform 0.6s ease;
     }
+    .slide.full { min-height: 100vh; min-height: 100dvh; }
     .slide.visible {
       opacity: 1;
       transform: translateY(0);
@@ -224,7 +224,7 @@
 <div class="scroll-container">
 
 <!-- HERO -->
-<div class="slide" id="s1">
+<div class="slide full" id="s1">
   <div class="inner">
     <div class="headline">Reclaim<br>Your Time.</div>
     <p class="subtext">Hidup cuma sekali.<br>Dan waktu nggak akan pernah bisa dibeli —<br>sekalipun harta lu sebesar gunung Rinjani.</p>
@@ -282,7 +282,7 @@
 </div>
 
 <!-- LU KURANG WAKTU -->
-<div class="slide" id="s6">
+<div class="slide full" id="s6">
   <div class="inner">
     <p class="body-text muted">Lu nggak kurang duit.</p>
     <br>
@@ -303,7 +303,7 @@
 </div>
 
 <!-- NYESEK -->
-<div class="slide" id="s8">
+<div class="slide full" id="s8">
   <div class="inner">
     <p class="body-text muted">Dan ini yang bikin nyesek —<br>yang bikin lu berhenti dan mikir:</p>
     <br>
@@ -312,7 +312,7 @@
 </div>
 
 <!-- TAPI -->
-<div class="slide" id="s9">
+<div class="slide full" id="s9">
   <div class="inner">
     <p class="emphasis">Tapi waktu bisa<br><span class="gold">diambil balik.</span></p>
     <br><br>
