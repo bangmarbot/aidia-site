@@ -12,37 +12,23 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
     body {
       font-family: 'Inter', -apple-system, sans-serif;
       background: #0b1120;
       color: #e8e8e8;
     }
 
-    .section {
-      text-align: center;
-      padding: 80px 24px;
-      max-width: 680px;
-      margin: 0 auto;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    .section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Hero - full height */
+    /* Hero */
     .hero {
       min-height: 100vh;
       min-height: 100dvh;
       display: flex;
       align-items: center;
       justify-content: center;
+      text-align: center;
       padding: 40px 24px;
+      position: relative;
     }
-    .hero .inner { max-width: 680px; }
     .hero h1 {
       font-size: clamp(2.5rem, 8vw, 5rem);
       font-weight: 900;
@@ -71,174 +57,153 @@
       50% { transform: translateX(-50%) translateY(8px); }
     }
 
+    /* Story container */
+    .story {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+      text-align: center;
+    }
+    .story .line {
+      margin-bottom: 32px;
+      opacity: 0;
+      transform: translateY(15px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .story .line.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .story .line.gap {
+      margin-bottom: 56px;
+    }
+
     /* Typography */
-    .text { font-size: clamp(1.05rem, 2.5vw, 1.25rem); font-weight: 300; line-height: 1.9; color: #c8d0e0; }
-    .muted { color: #667799; }
+    .t { font-size: clamp(1.05rem, 2.5vw, 1.2rem); font-weight: 400; line-height: 1.8; color: #c8d0e0; }
+    .t.m { color: #667799; font-weight: 300; }
+    .t.big { font-size: clamp(1.8rem, 5vw, 3rem); font-weight: 900; letter-spacing: -1px; line-height: 1.2; color: #fff; }
+    .t.emp { font-size: clamp(1.3rem, 3.5vw, 1.8rem); font-weight: 700; line-height: 1.5; }
+    .t.q { font-size: clamp(1.2rem, 3vw, 1.5rem); font-style: italic; color: #d4a853; line-height: 1.6; }
     .gold { color: #d4a853; }
     .white { color: #fff; }
-    .big { font-size: clamp(1.8rem, 5vw, 3rem); font-weight: 900; letter-spacing: -1px; line-height: 1.2; color: #fff; }
-    .emphasis { font-size: clamp(1.4rem, 3.5vw, 2rem); font-weight: 700; line-height: 1.4; }
-    .question { font-size: clamp(1.2rem, 3vw, 1.6rem); font-style: italic; color: #d4a853; line-height: 1.6; }
-    .highlight { background: rgba(212,168,83,0.1); padding: 20px 24px; border-radius: 8px; display: inline-block; }
-
-    /* Spacer */
-    .spacer { height: 40px; }
-    .spacer-sm { height: 20px; }
-
-    /* Divider */
-    .divider { text-align: center; padding: 20px 0; color: #223344; font-size: 1.2rem; letter-spacing: 8px; }
+    .hl {
+      background: rgba(212,168,83,0.08);
+      padding: 24px;
+      border-radius: 8px;
+      margin-bottom: 32px;
+    }
 
     /* CTA */
-    .cta { padding: 80px 24px; text-align: center; }
-    .cta p { font-size: 1.1rem; color: #8899bb; margin-bottom: 12px; font-weight: 300; max-width: 480px; margin-left: auto; margin-right: auto; }
-    .cta p.lead { font-size: 1.3rem; color: #e8e8e8; font-weight: 700; margin-bottom: 8px; }
-    .cta-buttons { display: flex; flex-direction: column; gap: 14px; margin-top: 36px; align-items: center; }
-    .cta-btn {
+    .cta {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(15px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .cta.visible { opacity: 1; transform: translateY(0); }
+    .cta p { font-size: 1.05rem; color: #8899bb; margin-bottom: 12px; font-weight: 300; }
+    .cta p.lead { font-size: 1.2rem; color: #e8e8e8; font-weight: 700; margin-bottom: 8px; }
+    .cta-buttons { display: flex; flex-direction: column; gap: 12px; margin-top: 32px; align-items: center; }
+    .btn {
       display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-      padding: 14px 32px; border-radius: 50px; text-decoration: none;
-      font-size: 1rem; font-weight: 600; transition: all 0.3s; font-family: 'Inter', sans-serif;
-      min-width: 260px;
+      padding: 14px 28px; border-radius: 50px; text-decoration: none;
+      font-size: 0.95rem; font-weight: 600; transition: all 0.3s; font-family: 'Inter', sans-serif;
+      width: 100%; max-width: 280px;
     }
-    .cta-btn.wa { background: #25D366; color: #fff; }
-    .cta-btn.wa:hover { background: #1fb855; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,211,102,0.3); }
-    .cta-btn.tiktok { background: #fff; color: #0b1120; }
-    .cta-btn.tiktok:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255,255,255,0.15); }
-    .cta-btn.fb { background: transparent; color: #8899bb; border: 1px solid #334466; }
-    .cta-btn.fb:hover { border-color: #8899bb; color: #e8e8e8; transform: translateY(-2px); }
+    .btn.wa { background: #25D366; color: #fff; }
+    .btn.wa:hover { background: #1fb855; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37,211,102,0.3); }
+    .btn.tk { background: #fff; color: #0b1120; }
+    .btn.tk:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255,255,255,0.15); }
+    .btn.fb { background: transparent; color: #667799; border: 1px solid #334466; }
+    .btn.fb:hover { border-color: #667799; color: #e8e8e8; transform: translateY(-2px); }
 
-    footer { text-align: center; padding: 40px 24px; font-size: 0.8rem; color: #334466; }
-
-    @media (max-width: 600px) {
-      .section { padding: 60px 20px; }
-      .cta-btn { min-width: 100%; }
-    }
+    footer { text-align: center; padding: 40px 24px; font-size: 0.75rem; color: #223344; }
   </style>
 </head>
 <body>
 
-<!-- HERO -->
-<div class="hero section" style="opacity:1;transform:none;">
-  <div class="inner">
+<div class="hero">
+  <div>
     <h1>Reclaim<br>Your Time.</h1>
     <p>Hidup cuma sekali.<br>Dan waktu nggak akan pernah bisa dibeli —<br>sekalipun harta lu sebesar gunung Rinjani.</p>
     <div class="scroll-hint">↓ scroll</div>
   </div>
 </div>
 
-<div class="divider">· · ·</div>
+<div class="story">
 
-<!-- BERSYUKUR -->
-<div class="section">
-  <p class="text">Lu bersyukur. Lu nggak ngeluh.</p>
-  <div class="spacer-sm"></div>
-  <p class="text muted">Alhamdulillah, hidup cukup —<br>nggak perlu jauh ngelangkah dan mengeluh.</p>
-  <div class="spacer"></div>
-  <p class="text">Kerjaan ada. Keluarga sehat.</p>
-  <div class="spacer-sm"></div>
-  <p class="text muted">Tapi di balik itu semua,<br>ada yang bikin lu gelisah dan nggak lekat.</p>
-</div>
+  <div class="line"><p class="t">Lu bersyukur. Lu nggak ngeluh.</p></div>
+  <div class="line"><p class="t m">Alhamdulillah, hidup cukup —<br>nggak perlu jauh ngelangkah dan mengeluh.</p></div>
+  <div class="line"><p class="t">Kerjaan ada. Keluarga sehat.</p></div>
+  <div class="line gap"><p class="t m">Tapi di balik itu semua,<br>ada yang bikin lu gelisah dan nggak lekat.</p></div>
 
-<!-- BENTAR -->
-<div class="section">
-  <p class="text">Anak ngajak main. <span class="white"><em>"Bentar ya."</em></span></p>
-  <div class="spacer-sm"></div>
-  <p class="text muted">Tapi bentar itu nggak pernah dateng —<br>lu tau itu, dan lu diam saja.</p>
-  <div class="spacer"></div>
-  <p class="text">Istri cerita soal harinya.</p>
-  <div class="spacer-sm"></div>
-  <p class="text muted">Lu dengerin, tapi pikiran lu<br>masih di kerjaan dan layar-layarnya.</p>
-  <div class="spacer"></div>
-  <p class="text">Nyokap bokap makin tua, waktu bareng mereka makin sempit.</p>
-  <div class="spacer-sm"></div>
-  <p class="text muted">Lu pengen sering ketemu,<br>tapi bahkan nelpon aja sering lu skip.</p>
-</div>
+  <div class="line"><p class="t">Anak ngajak main. <span class="white"><em>"Bentar ya."</em></span></p></div>
+  <div class="line gap"><p class="t m">Tapi bentar itu nggak pernah dateng —<br>lu tau itu, dan lu diam saja.</p></div>
 
-<!-- IRONI -->
-<div class="section">
-  <div class="highlight">
-    <p class="emphasis">Lucu ya —<br>kerja banting tulang buat keluarga.</p>
-    <div class="spacer-sm"></div>
-    <p class="emphasis gold">Tapi keluarga yang paling sering lu tinggalin<br>demi dunia dan segala arahnya.</p>
+  <div class="line"><p class="t">Istri cerita soal harinya.</p></div>
+  <div class="line gap"><p class="t m">Lu dengerin, tapi pikiran lu<br>masih di kerjaan dan layar-layarnya.</p></div>
+
+  <div class="line"><p class="t">Nyokap bokap makin tua, waktu bareng mereka makin sempit.</p></div>
+  <div class="line gap"><p class="t m">Lu pengen sering ketemu,<br>tapi bahkan nelpon aja sering lu skip.</p></div>
+
+  <div class="line">
+    <div class="hl">
+      <p class="t emp">Lucu ya — kerja banting tulang buat keluarga.</p>
+      <p class="t emp gold" style="margin-top:12px;">Tapi keluarga yang paling sering lu tinggalin<br>demi dunia dan segala arahnya.</p>
+    </div>
   </div>
+
+  <div class="line"><p class="t">Habis sholat, lu diem.</p></div>
+  <div class="line gap"><p class="t m">Sebelum tidur, lu mikir — dan pertanyaan itu dateng lagi:<br>lirih dan dalam, lu simpan sendiri, lu pendem.</p></div>
+
+  <div class="line gap"><p class="t q">"Kalau besok gw 'dipanggil'...<br>bekal gw cukup nggak?"</p></div>
+
+  <div class="line"><p class="t m">Lu nggak kurang duit.</p></div>
+  <div class="line gap"><p class="t big">Lu kurang waktu.</p></div>
+
+  <div class="line"><p class="t">Waktu buat ibadah yang nggak buru-buru.</p></div>
+  <div class="line gap"><p class="t m">Buat main sama anak tanpa buka HP —<br>buat jadi bapak, bukan cuma sosok yang selalu berlalu.</p></div>
+
+  <div class="line"><p class="t">Buat jadi orang yang bermanfaat — bukan cuma sibuk.</p></div>
+  <div class="line gap"><p class="t m">Buat hadir, beneran hadir —<br>bukan cuma fisiknya yang nongol<br>tapi hatinya jauh dan tersungkur.</p></div>
+
+  <div class="line"><p class="t m">Dan ini yang bikin nyesek —<br>yang bikin lu berhenti dan mikir:</p></div>
+  <div class="line gap"><p class="t big">Waktu nggak bisa dibeli.<br><span class="gold">Berapapun.</span></p></div>
+
+  <div class="line"><p class="t emp white">Tapi waktu bisa <span class="gold">diambil balik.</span></p></div>
+  <div class="line"><p class="t m">Dari kerjaan yang sebenernya nggak perlu lu kerjain sendiri —<br>yang selama ini makan waktu dan bikin lu makin jauh dari yang lu cintai.</p></div>
+
 </div>
 
-<!-- DIPANGGIL -->
-<div class="section">
-  <p class="text">Habis sholat, lu diem.</p>
-  <div class="spacer-sm"></div>
-  <p class="text muted">Sebelum tidur, lu mikir — dan pertanyaan itu dateng lagi:<br>lirih dan dalam, lu simpan sendiri, lu pendem.</p>
-  <div class="spacer"></div>
-  <p class="question">"Kalau besok gw 'dipanggil'...<br>bekal gw cukup nggak?"</p>
-</div>
-
-<!-- LU KURANG WAKTU -->
-<div class="section">
-  <p class="text muted">Lu nggak kurang duit.</p>
-  <div class="spacer"></div>
-  <p class="big">Lu kurang waktu.</p>
-</div>
-
-<!-- WAKTU BUAT APA -->
-<div class="section">
-  <p class="text">Waktu buat ibadah yang nggak buru-buru.</p>
-  <div class="spacer-sm"></div>
-  <p class="text muted">Buat main sama anak tanpa buka HP —<br>buat jadi bapak, bukan cuma sosok yang selalu berlalu.</p>
-  <div class="spacer"></div>
-  <p class="text">Buat jadi orang yang bermanfaat — bukan cuma sibuk.</p>
-  <div class="spacer-sm"></div>
-  <p class="text muted">Buat hadir, beneran hadir —<br>bukan cuma fisiknya yang nongol<br>tapi hatinya jauh dan tersungkur.</p>
-</div>
-
-<!-- NYESEK -->
-<div class="section">
-  <p class="text muted">Dan ini yang bikin nyesek —<br>yang bikin lu berhenti dan mikir:</p>
-  <div class="spacer"></div>
-  <p class="big">Waktu nggak bisa dibeli.<br><span class="gold">Berapapun.</span></p>
-</div>
-
-<!-- TAPI -->
-<div class="section">
-  <p class="emphasis white">Tapi waktu bisa<br><span class="gold">diambil balik.</span></p>
-  <div class="spacer"></div>
-  <p class="text muted">Dari kerjaan yang sebenernya<br>nggak perlu lu kerjain sendiri —<br><br>yang selama ini makan waktu<br>dan bikin lu makin jauh<br>dari yang lu cintai.</p>
-</div>
-
-<!-- CTA -->
-<div class="cta section">
+<div class="cta">
   <p class="lead">Ini soal pilihan.</p>
   <p>Pilihan untuk berhenti ngasih waktu lu ke hal yang bisa didelegasikan — dan mulai hadir untuk yang benar-benar bernilai.</p>
-  <div class="spacer-sm"></div>
-  <p>Kalau lu ngerasa hal yang sama —<br><strong style="color:#e8e8e8">lu nggak sendirian.</strong></p>
+  <p style="margin-top:16px;">Kalau lu ngerasa hal yang sama — <strong style="color:#e8e8e8">lu nggak sendirian.</strong></p>
   <div class="cta-buttons">
-    <a href="#" class="cta-btn wa" target="_blank">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    <a href="#" class="btn wa" target="_blank">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
       Join Komunitas WhatsApp
     </a>
-    <a href="#" class="cta-btn tiktok" target="_blank">Follow di TikTok</a>
-    <a href="#" class="cta-btn fb" target="_blank">Follow di Facebook</a>
+    <a href="#" class="btn tk" target="_blank">Follow di TikTok</a>
+    <a href="#" class="btn fb" target="_blank">Follow di Facebook</a>
   </div>
 </div>
 
 <footer>© 2026 ReclaimYourTime</footer>
 
 <script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) entry.target.classList.add('visible');
-    });
-  }, { threshold: 0.15 });
-
-  document.querySelectorAll('.section:not(.hero)').forEach(el => observer.observe(el));
-
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.2 });
+  document.querySelectorAll('.line, .cta').forEach(el => obs.observe(el));
   window.addEventListener('scroll', () => {
-    const hint = document.querySelector('.scroll-hint');
-    if (hint && window.scrollY > 100) {
-      hint.style.opacity = '0';
-      hint.style.transition = 'opacity 0.5s';
-    }
+    const h = document.querySelector('.scroll-hint');
+    if (h && window.scrollY > 80) { h.style.opacity = '0'; h.style.transition = 'opacity 0.5s'; }
   }, { passive: true });
 </script>
 
 </body>
 </html>
-<!-- deploy 1775234482 -->
