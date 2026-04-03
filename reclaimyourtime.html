@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reclaim Your Time — Ambil Kembali Waktu Lu</title>
+  <meta name="description" content="Waktu nggak bisa dibeli. Tapi bisa diambil kembali. ReclaimYourTime — perjalanan mengambil kembali waktu untuk hal yang benar-benar bermakna.">
+  <meta property="og:title" content="Reclaim Your Time">
+  <meta property="og:description" content="Hidup lu cuma sekali. Dan waktu nggak pernah bisa diulang.">
+  <meta property="og:url" content="https://aidia.uk/reclaimyourtime">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⏳</text></svg>">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #fafafa;
+      --surface: #ffffff;
+      --border: #e5e5e5;
+      --text: #1a1a1a;
+      --muted: #666;
+      --accent: #1a1a1a;
+      --accent-hover: #333;
+      --highlight: #f5f0e8;
+    }
+
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container { max-width: 640px; margin: 0 auto; padding: 0 24px; }
+
+    /* Hero */
+    .hero {
+      padding: 100px 0 60px;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 400;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+      font-style: italic;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--muted);
+      max-width: 460px;
+      margin: 0 auto;
+    }
+
+    /* Divider */
+    .divider {
+      text-align: center;
+      padding: 40px 0;
+      color: var(--border);
+      font-size: 1.5rem;
+      letter-spacing: 8px;
+    }
+
+    /* Story */
+    .story {
+      padding: 0 0 60px;
+    }
+    .story p {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      color: var(--text);
+    }
+    .story p.muted {
+      color: var(--muted);
+    }
+    .story p.highlight {
+      background: var(--highlight);
+      padding: 20px 24px;
+      border-radius: 4px;
+      font-style: italic;
+    }
+    .story p.bold-statement {
+      font-size: 1.3rem;
+      font-weight: 700;
+      text-align: center;
+      padding: 24px 0;
+    }
+    .story p.question {
+      font-style: italic;
+      color: var(--muted);
+      text-align: center;
+      font-size: 1.15rem;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      padding: 60px 0;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+    .cta-section p {
+      font-size: 1.1rem;
+      color: var(--muted);
+      margin-bottom: 32px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cta-section p:first-child {
+      font-size: 1.3rem;
+      color: var(--text);
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .cta-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+      margin-top: 32px;
+    }
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 32px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: all 0.2s;
+      min-width: 260px;
+      justify-content: center;
+    }
+    .cta-btn.primary {
+      background: #25D366;
+      color: #fff;
+    }
+    .cta-btn.primary:hover {
+      background: #1fb855;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(37,211,102,0.3);
+    }
+    .cta-btn.secondary {
+      background: var(--text);
+      color: #fff;
+    }
+    .cta-btn.secondary:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .cta-btn.outline {
+      background: transparent;
+      color: var(--text);
+      border: 2px solid var(--border);
+    }
+    .cta-btn.outline:hover {
+      border-color: var(--text);
+      transform: translateY(-1px);
+    }
+
+    /* About */
+    .about {
+      padding: 60px 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    .about p.label {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    .about p.name {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .about p.bio {
+      font-size: 0.95rem;
+      color: var(--muted);
+      max-width: 480px;
+      margin: 0 auto 20px;
+      line-height: 1.7;
+    }
+    .about blockquote {
+      font-style: italic;
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-top: 24px;
+      padding: 0 20px;
+    }
+
+    /* Footer */
+    footer {
+      padding: 40px 0;
+      text-align: center;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .hero { padding: 60px 0 40px; }
+      .hero h1 { font-size: 2.2rem; }
+      .story p { font-size: 1rem; }
+      .cta-btn { min-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="container">
+    <h1>Reclaim Your Time.</h1>
+    <p>Hidup lu cuma sekali. Dan waktu nggak pernah bisa diulang.</p>
+  </div>
+</section>
+
+<div class="divider">· · ·</div>
+
+<section class="story">
+  <div class="container">
+
+    <p>Lu bersyukur.</p>
+
+    <p class="muted">Alhamdulillah, hidup berkecukupan. Kerjaan ada. Keluarga sehat. Atap di atas kepala.</p>
+
+    <p>Tapi ada satu hal yang terus mengganggu.</p>
+
+    <p>Anak bilang <em>"main yuk."</em> Lu jawab <em>"bentar."</em></p>
+
+    <p class="muted">Dan "bentar" itu... nggak pernah dateng.</p>
+
+    <p>Istri cerita soal harinya. Tapi pikiran lu masih di email yang belum dibales.</p>
+
+    <p>Orang tua makin tua. Dan lu sadar — waktu bareng mereka itu terbatas. Tapi lu bahkan nggak sempet nelpon.</p>
+
+    <p class="highlight">Lu kerja keras buat keluarga. Tapi keluarga justru yang paling sering lu korbankan.</p>
+
+    <p>Dan di momen tenang — mungkin habis sholat, mungkin sebelum tidur — lu diam. Dan bertanya:</p>
+
+    <p class="question">"Kalau besok gw dipanggil... apa bekal gw cukup?"</p>
+
+    <p>Lu nggak kurang uang.</p>
+
+    <p class="bold-statement">Lu kurang waktu.</p>
+
+    <p>Waktu untuk ibadah yang nggak keburu-buru. Waktu untuk bikin cerita bareng anak-anak. Waktu untuk jadi berkah buat orang-orang terdekat.</p>
+
+    <p>Dan lu tau hal yang paling bikin nyesek:</p>
+
+    <p class="bold-statement">Waktu nggak bisa dibeli. Dengan berapapun.</p>
+
+    <p>Tapi waktu bisa <strong>diambil kembali</strong> — dari kerjaan yang seharusnya nggak perlu lu kerjain sendiri.</p>
+
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container">
+    <p>Ini bukan soal teknologi. Ini soal pilihan.</p>
+    <p>Pilihan untuk berhenti ngasih waktu lu ke hal yang bisa didelegasikan — dan mulai hadir untuk yang benar-benar bernilai.</p>
+    <p>Kalau lu ngerasa hal yang sama — lu nggak sendirian.</p>
+
+    <div class="cta-buttons">
+      <a href="#" class="cta-btn primary" target="_blank">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Join Komunitas WhatsApp
+      </a>
+      <a href="#" class="cta-btn secondary" target="_blank">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12.53.02C13.84 0 15.14.01 16.44.06c1.34.06 2.27.26 3.07.56.84.3 1.55.74 2.26 1.45s1.15 1.42 1.45 2.26c.3.8.5 1.73.56 3.07.05 1.3.06 2.6.06 3.91v1.38c0 1.31-.01 2.61-.06 3.91-.06 1.34-.26 2.27-.56 3.07-.3.84-.74 1.55-1.45 2.26s-1.42 1.15-2.26 1.45c-.8.3-1.73.5-3.07.56-1.3.05-2.6.06-3.91.06h-1.06c-1.31 0-2.61-.01-3.91-.06-1.34-.06-2.27-.26-3.07-.56-.84-.3-1.55-.74-2.26-1.45S.74 20.32.44 19.48c-.3-.8-.5-1.73-.56-3.07C-.17 15.11-.18 13.81-.18 12.5v-1c0-1.31.01-2.61.06-3.91.06-1.34.26-2.27.56-3.07.3-.84.74-1.55 1.45-2.26S3.31.74 4.15.44c.8-.3 1.73-.5 3.07-.56C8.52.01 9.82 0 11.13.02h1.4zM12 5.84A6.16 6.16 0 1 0 12 18.16 6.16 6.16 0 0 0 12 5.84zM12 8a4 4 0 1 1 0 8 4 4 0 0 1 0-8zm6.41-3.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/></svg>
+        Follow di TikTok
+      </a>
+      <a href="#" class="cta-btn outline" target="_blank">
+        Follow di Facebook
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="about">
+  <div class="container">
+    <p class="label">Yang nulis ini</p>
+    <p class="name">Muhamad Muslih</p>
+    <p class="bio">Suami. Bapak 3 anak. Orang biasa yang lagi belajar jadi lebih baik — dengan cara berhenti ngerjain hal yang bisa didelegasikan, dan mulai hadir untuk yang bermakna.</p>
+    <blockquote>"Kesuksesan di dunia tidak ada artinya tanpa kesuksesan di akhirat."</blockquote>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    © 2026 ReclaimYourTime
+  </div>
+</footer>
+
+</body>
+</html>
