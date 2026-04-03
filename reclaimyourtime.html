@@ -13,6 +13,10 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
+    html {
+      scroll-snap-type: y mandatory;
+      overflow-y: scroll;
+    }
     body {
       font-family: 'Inter', -apple-system, sans-serif;
       background: #0b1120;
@@ -22,7 +26,7 @@
 
     /* Each section = full viewport */
     .slide {
-      min-height: 100vh;
+      height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -32,6 +36,8 @@
       opacity: 0;
       transform: translateY(40px);
       transition: opacity 0.8s ease, transform 0.8s ease;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
     }
     .slide.visible {
       opacity: 1;
@@ -105,7 +111,7 @@
 
     /* CTA */
     .cta-section {
-      min-height: 100vh;
+      height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -115,6 +121,8 @@
       opacity: 0;
       transform: translateY(40px);
       transition: opacity 0.8s ease, transform 0.8s ease;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
     }
     .cta-section.visible {
       opacity: 1;
@@ -331,7 +339,7 @@
   </div>
 </div>
 
-<footer>
+<footer style="scroll-snap-align:start;">
   © 2026 ReclaimYourTime
 </footer>
 
