@@ -13,17 +13,21 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    html {
-      scroll-snap-type: y mandatory;
-      overflow-y: scroll;
-      -webkit-overflow-scrolling: touch;
-    }
-    body {
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
       font-family: 'Inter', -apple-system, sans-serif;
       background: #0b1120;
       color: #e8e8e8;
-      overflow: hidden;
+    }
+    .scroll-container {
       height: 100vh;
+      height: 100dvh;
+      overflow-y: scroll;
+      scroll-snap-type: y mandatory;
+      -webkit-overflow-scrolling: touch;
     }
 
     /* Each section = full viewport */
@@ -220,6 +224,8 @@
 </head>
 <body>
 
+<div class="scroll-container">
+
 <!-- HERO -->
 <div class="slide" id="s1">
   <div class="inner">
@@ -340,9 +346,11 @@
   </div>
 </div>
 
-<footer style="scroll-snap-align:start;">
+<footer style="scroll-snap-align:center;height:100vh;height:100dvh;display:flex;align-items:center;justify-content:center;">
   © 2026 ReclaimYourTime
 </footer>
+
+</div><!-- end scroll-container -->
 
 <script>
   // Intersection Observer for scroll reveal
@@ -359,9 +367,10 @@
   });
 
   // Remove scroll hint after first scroll
-  window.addEventListener('scroll', () => {
+  const sc = document.querySelector('.scroll-container');
+  sc.addEventListener('scroll', () => {
     const hint = document.querySelector('.scroll-hint');
-    if (hint && window.scrollY > 100) {
+    if (hint && sc.scrollTop > 100) {
       hint.style.opacity = '0';
       hint.style.transition = 'opacity 0.5s';
     }
