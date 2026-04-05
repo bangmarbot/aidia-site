@@ -447,12 +447,15 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
         }
-        .resources-list li .name { font-weight: 600; }
+        .resources-list li .name { font-weight: 600; white-space: nowrap; }
         .resources-list li a {
             color: var(--cyan);
             text-decoration: none;
             font-size: 0.9rem;
+            word-break: break-all;
         }
         .resources-list li a:hover { text-decoration: underline; }
 
@@ -521,7 +524,15 @@
             .arch-arrow { transform: rotate(90deg); }
             .bot-types { grid-template-columns: 1fr; }
             .flow-steps { grid-template-columns: repeat(2, 1fr); }
+            .provider-cards { grid-template-columns: 1fr; }
+            .ideas-grid { grid-template-columns: 1fr; }
             section { padding: 3rem 1.2rem; }
+            .resources-list li {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .code-block { font-size: 0.95rem; padding: 1.2rem 1rem; }
+            .wizard-list li { flex-direction: column; gap: 0.2rem; }
         }
     </style>
 </head>
