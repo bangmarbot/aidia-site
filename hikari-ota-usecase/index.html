@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTA Workforce Trends 2025-2026 — HIKARI</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✈️</text></svg>">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+        :root{--bg:#0F172A;--card:#1A243B;--white:#FFF;--gray:#9CA3B8;--cyan:#00D4FF;--green:#00E696;--orange:#FF9F43;--purple:#A85CFF;--red:#FF6B6B;--yellow:#FFD93D}
+        html{scroll-behavior:smooth}
+        body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--white);line-height:1.7;overflow-x:hidden}
+
+        nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(15,23,42,0.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,212,255,0.1);padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center}
+        nav .logo{font-size:1.1rem;font-weight:700;color:var(--cyan);text-decoration:none}
+        nav .back{color:var(--gray);text-decoration:none;font-size:0.85rem}
+        nav .back:hover{color:var(--cyan)}
+
+        .hero{min-height:60vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:7rem 2rem 3rem;position:relative}
+        .hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at 50% 30%,rgba(0,212,255,0.07) 0%,transparent 60%);pointer-events:none}
+        .hero .badge{display:inline-block;background:rgba(0,212,255,0.1);border:1px solid rgba(0,212,255,0.3);color:var(--cyan);padding:0.4rem 1.2rem;border-radius:50px;font-size:0.85rem;font-weight:500;margin-bottom:1.5rem}
+        .hero h1{font-size:clamp(2rem,5vw,3.5rem);font-weight:800;line-height:1.15;margin-bottom:1rem}
+        .hero h1 .accent{color:var(--cyan)}
+        .hero .subtitle{font-size:1.1rem;color:var(--gray);max-width:600px}
+
+        section{max-width:900px;margin:0 auto;padding:4rem 2rem}
+        .section-title{font-size:clamp(1.5rem,3.5vw,2rem);font-weight:700;margin-bottom:0.5rem}
+        .section-sub{color:var(--gray);margin-bottom:2rem;font-size:1rem}
+
+        .context-list{list-style:none;padding:0}
+        .context-list li{padding:0.7rem 0;color:var(--white);font-size:0.95rem;border-bottom:1px solid rgba(255,255,255,0.04)}
+        .context-list li::before{content:'→ ';color:var(--cyan);font-weight:600}
+
+        .two-col{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2rem}
+        .col-card{border-radius:14px;padding:1.5rem;border:1px solid rgba(255,255,255,0.05)}
+        .col-card.decline{background:rgba(255,107,107,0.06);border-color:rgba(255,107,107,0.15)}
+        .col-card.grow{background:rgba(0,230,150,0.06);border-color:rgba(0,230,150,0.15)}
+        .col-card h3{margin-bottom:1rem;font-size:1.1rem}
+        .col-card.decline h3{color:var(--red)}
+        .col-card.grow h3{color:var(--green)}
+        .col-card ul{list-style:none;padding:0}
+        .col-card ul li{padding:0.4rem 0;font-size:0.9rem}
+        .col-card.decline ul li{color:var(--gray)}
+        .col-card.decline ul li::before{content:'❌ '}
+        .col-card.grow ul li{color:var(--white)}
+        .col-card.grow ul li::before{content:'✅ '}
+
+        .insight-box{background:var(--card);border-radius:14px;padding:1.5rem 2rem;border-left:4px solid var(--cyan);margin:2rem 0}
+        .insight-box strong{color:var(--cyan)}
+
+        .ai-section{background:var(--card);border-radius:16px;padding:2rem;margin:2rem 0}
+        .ai-section h3{color:var(--cyan);margin-bottom:1rem}
+        .ai-section ul{list-style:none;padding:0}
+        .ai-section ul li{padding:0.5rem 0;font-size:0.93rem;border-bottom:1px solid rgba(255,255,255,0.04)}
+        .ai-section ul li::before{content:'🤖 ';font-size:0.85rem}
+
+        .indo-section{margin:2rem 0}
+        .indo-card{background:var(--card);border-radius:12px;padding:1.2rem 1.5rem;margin-bottom:0.8rem;border:1px solid rgba(255,255,255,0.04)}
+        .indo-card .company{color:var(--orange);font-weight:700;font-size:1rem}
+        .indo-card .detail{color:var(--gray);font-size:0.9rem;margin-top:0.3rem}
+
+        .implications{background:rgba(0,230,150,0.05);border:1px solid rgba(0,230,150,0.15);border-radius:14px;padding:2rem;margin:2rem 0}
+        .implications h3{color:var(--green);margin-bottom:1rem}
+        .implications ul{list-style:none;padding:0}
+        .implications ul li{padding:0.5rem 0;font-size:0.93rem}
+        .implications ul li::before{content:'💡 '}
+
+        .takeaway{text-align:center;padding:4rem 2rem}
+        .takeaway-box{background:rgba(21,37,64,0.8);border-radius:20px;padding:2.5rem;max-width:650px;margin:1.5rem auto;border:1px solid rgba(0,212,255,0.1)}
+        .takeaway-box blockquote{font-size:clamp(1.2rem,3vw,1.6rem);font-weight:700;color:var(--cyan);font-style:normal;line-height:1.4}
+        .takeaway .sub{color:var(--gray);margin-top:1rem;font-size:1rem}
+
+        footer{text-align:center;padding:2.5rem 2rem;color:var(--gray);font-size:0.8rem;border-top:1px solid rgba(255,255,255,0.05)}
+        footer a{color:var(--cyan);text-decoration:none}
+
+        .fade-in{opacity:0;transform:translateY(25px);transition:opacity 0.6s ease,transform 0.6s ease}
+        .fade-in.visible{opacity:1;transform:translateY(0)}
+
+        @media(max-width:768px){
+            .two-col{grid-template-columns:1fr}
+            section{padding:3rem 1.2rem}
+            nav{padding:0.8rem 1.2rem}
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="/hikarigo" class="logo">🔆 HIKARI Forum</a>
+    <a href="/hikarigo" class="back">← Back to Setup Guide</a>
+</nav>
+
+<div class="hero">
+    <div class="badge">Use Case — Online Travel Agent</div>
+    <h1>OTA <span class="accent">Workforce Trends</span><br>2025-2026</h1>
+    <p class="subtitle">How AI is reshaping the travel industry workforce — and what it means for HR.</p>
+</div>
+
+<section>
+    <h2 class="section-title fade-in">📊 Key Context</h2>
+    <p class="section-sub fade-in">The OTA industry has fundamentally shifted post-pandemic.</p>
+    <ul class="context-list fade-in">
+        <li>OTA industry recovered post-COVID but shifted to lean, tech-driven operations</li>
+        <li>Major layoffs: Booking.com (~2,800), Expedia (~1,500), Traveloka & Tiket.com streamlined</li>
+        <li>Root cause: over-hiring during recovery + AI automation replacing manual roles</li>
+        <li>OTAs are now <strong>tech companies selling travel</strong>, not travel companies using tech</li>
+    </ul>
+</section>
+
+<section>
+    <h2 class="section-title fade-in">Declining vs Growing Roles</h2>
+    <div class="two-col fade-in">
+        <div class="col-card decline">
+            <h3>Declining Roles</h3>
+            <ul>
+                <li>Manual booking & reservation agents</li>
+                <li>Traditional call center representatives</li>
+                <li>Manual data entry operators</li>
+                <li>Offline marketing teams</li>
+                <li>Back-office admin (paper-based)</li>
+            </ul>
+        </div>
+        <div class="col-card grow">
+            <h3>Growing Roles</h3>
+            <ul>
+                <li>AI/ML Engineers — personalization, pricing</li>
+                <li>Data Scientists — forecasting, dynamic pricing</li>
+                <li>Product Managers (AI-focused)</li>
+                <li>Content Automation & SEO Specialists</li>
+                <li>Revenue Management Analysts</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2 class="section-title fade-in">🤖 AI Transformation in OTAs</h2>
+    <div class="ai-section fade-in">
+        <h3>How AI is replacing traditional roles</h3>
+        <ul>
+            <li>Customer service: AI chatbots replaced 80%+ of tier-1 support (Expedia, Kayak use ChatGPT)</li>
+            <li>Agent-to-customer ratio shifted from 1:200 to 1:2,000+ with AI assistance</li>
+            <li>Dynamic pricing: ML algorithms optimize prices in real-time — no more manual pricing teams</li>
+            <li>Content: AI generates hotel descriptions, travel guides, SEO content at scale</li>
+            <li>Personalization: recommendation engines replace manual curation teams</li>
+        </ul>
+    </div>
+</section>
+
+<section>
+    <h2 class="section-title fade-in">🇮🇩 Indonesia OTA Landscape</h2>
+    <div class="indo-section fade-in">
+        <div class="indo-card">
+            <div class="company">Traveloka</div>
+            <div class="detail">Pivoted to fintech (PayLater) — hiring more fintech talent than travel operations</div>
+        </div>
+        <div class="indo-card">
+            <div class="company">Tiket.com</div>
+            <div class="detail">Lean team, tech-driven operations. Acquired by Blibli/Djarum ecosystem</div>
+        </div>
+        <div class="indo-card">
+            <div class="company">PegiPegi</div>
+            <div class="detail">Significantly downsized operations</div>
+        </div>
+    </div>
+    <div class="insight-box fade-in">
+        <strong>Trend:</strong> Less operations headcount, more tech/product/data roles. The shift is irreversible.
+    </div>
+</section>
+
+<section>
+    <div class="implications fade-in">
+        <h3>💡 Implications for HR & Workforce Planning</h3>
+        <ul>
+            <li>Reskill existing staff: customer service → AI supervision, data analysis</li>
+            <li>Hire for adaptability, not just domain expertise</li>
+            <li>Invest in AI literacy across all departments — not just engineering</li>
+            <li>Build human-AI hybrid teams: AI does volume, humans do judgment</li>
+        </ul>
+    </div>
+</section>
+
+<div class="takeaway">
+    <h2 class="section-title fade-in">🎯 Key Takeaway</h2>
+    <div class="takeaway-box fade-in">
+        <blockquote>"The future OTA workforce is small, technical, and AI-augmented. Humans handle strategy, partnerships, and edge cases. AI handles everything else."</blockquote>
+    </div>
+    <p class="sub fade-in">The question isn't <em>if</em> AI will transform your workforce — it's <em>how fast</em>.</p>
+</div>
+
+<footer>
+    <p>© <a href="https://aidia.uk">aidia</a> — HIKARI Forum 2026</p>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
