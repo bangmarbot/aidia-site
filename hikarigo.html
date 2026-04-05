@@ -310,6 +310,30 @@
             color: var(--green);
             border: 1px solid rgba(0, 230, 150, 0.1);
             overflow-x: auto;
+            position: relative;
+        }
+        .copy-btn {
+            position: absolute;
+            top: 0.6rem;
+            right: 0.6rem;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--gray);
+            border-radius: 6px;
+            padding: 0.3rem 0.6rem;
+            font-size: 0.7rem;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.2s;
+        }
+        .copy-btn:hover {
+            background: rgba(255,255,255,0.15);
+            color: var(--white);
+        }
+        .copy-btn.copied {
+            background: rgba(0, 230, 150, 0.15);
+            color: var(--green);
+            border-color: rgba(0, 230, 150, 0.3);
         }
 
         /* WIZARD TABLE */
@@ -635,7 +659,7 @@
         <ol class="step-list">
             <li><strong>💻 Laptop</strong> — Windows 10 or later</li>
             <li><strong>📱 Telegram</strong> — Personal account on your phone</li>
-            <li><strong>🧠 AI Subscription</strong> — ChatGPT Plus / Claude Pro / Google Gemini</li>
+            <li><strong>🧠 AI Subscription</strong> — <a href="https://chatgpt.com" target="_blank" style="color:var(--cyan)">ChatGPT Plus</a> / <a href="https://claude.ai" target="_blank" style="color:var(--cyan)">Claude Pro</a> / <a href="https://aistudio.google.com" target="_blank" style="color:var(--cyan)">Google Gemini</a></li>
             <li><strong>🌐 Internet</strong> — Stable WiFi or mobile data</li>
         </ol>
     </div>
@@ -648,7 +672,7 @@
         </div>
         <p class="step-desc">OpenClaw runs on Node.js — install it first.</p>
         <ol class="step-list">
-            <li>Go to <strong>nodejs.org</strong></li>
+            <li>Go to <a href="https://nodejs.org" target="_blank" style="color:var(--cyan)"><strong>nodejs.org</strong></a></li>
             <li>Click <strong>Download</strong> (LTS version)</li>
             <li>Run installer: Next → Next → Finish</li>
             <li>Open <strong>Command Prompt</strong> (Win+R → type <code>cmd</code> → Enter)</li>
@@ -663,9 +687,9 @@
             <div class="step-num">2</div>
             <h3>Install OpenClaw</h3>
         </div>
-        <div class="code-block">npm install -g openclaw</div>
+        <div class="code-block"><span>npm install -g openclaw</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
         <p class="step-desc">Verify installation:</p>
-        <div class="code-block">openclaw --version</div>
+        <div class="code-block"><span>openclaw --version</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
         <p style="margin-top: 1rem; font-weight: 600;">That's it. OpenClaw is installed. 🎉</p>
     </div>
 
@@ -676,7 +700,7 @@
             <h3>Create a Telegram Bot</h3>
         </div>
         <ol class="step-list">
-            <li><strong>Open Telegram</strong> → Search for <strong>@BotFather</strong></li>
+            <li><strong>Open Telegram</strong> → Search for <a href="https://t.me/BotFather" target="_blank" style="color:var(--cyan)"><strong>@BotFather</strong></a></li>
             <li><strong>Send /newbot</strong> → BotFather asks for a name</li>
             <li><strong>Choose a name</strong> → e.g. "My AI Assistant"</li>
             <li><strong>Choose username</strong> → Must end with <code>bot</code></li>
@@ -692,7 +716,7 @@
             <h3>Connect Everything</h3>
         </div>
         <p class="step-desc">Run the setup wizard:</p>
-        <div class="code-block">openclaw setup</div>
+        <div class="code-block"><span>openclaw setup</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
         <p class="step-desc" style="margin-top: 1.5rem;">The wizard will ask:</p>
         <ul class="wizard-list">
             <li><span class="wizard-key">🤖 Bot token</span> <span class="wizard-val">Paste from BotFather</span></li>
@@ -709,7 +733,7 @@
             <div class="step-num">5</div>
             <h3>Start Your Agent! 🚀</h3>
         </div>
-        <div class="code-block">openclaw gateway start</div>
+        <div class="code-block"><span>openclaw gateway start</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
         <p style="font-size: 1.2rem; font-weight: 600; margin: 1.5rem 0;">Open Telegram → Chat with your bot → It's alive! 🎉</p>
         <p class="step-desc">Try these messages:</p>
         <ul class="try-list">
@@ -728,17 +752,17 @@
     <div class="provider-cards fade-in">
         <div class="provider-card openai">
             <h4>OpenAI (GPT-4o, Codex)</h4>
-            <p class="url">🌐 platform.openai.com/api-keys</p>
+            <p class="url"><a href="https://platform.openai.com/api-keys" target="_blank" style="color:var(--cyan)">🌐 platform.openai.com/api-keys</a></p>
             <p class="price">💰 $20/mo Plus</p>
         </div>
         <div class="provider-card anthropic">
             <h4>Anthropic (Claude Opus/Sonnet)</h4>
-            <p class="url">🌐 console.anthropic.com</p>
+            <p class="url"><a href="https://console.anthropic.com" target="_blank" style="color:var(--cyan)">🌐 console.anthropic.com</a></p>
             <p class="price">💰 $20/mo Pro + credits</p>
         </div>
         <div class="provider-card google">
             <h4>Google (Gemini Pro)</h4>
-            <p class="url">🌐 aistudio.google.com</p>
+            <p class="url"><a href="https://aistudio.google.com" target="_blank" style="color:var(--cyan)">🌐 aistudio.google.com</a></p>
             <p class="price">💰 Free tier available!</p>
         </div>
     </div>
@@ -771,11 +795,10 @@
 <section id="resources">
     <h2 class="section-title fade-in">Resources &amp; Next Steps</h2>
     <ul class="resources-list fade-in">
-        <li><span class="name">🦞 OpenClaw Docs</span> <a href="https://docs.openclaw.ai" target="_blank">docs.openclaw.ai</a></li>
-        <li><span class="name">💬 OpenClaw Community</span> <a href="https://discord.com/invite/clawd" target="_blank">discord.com/invite/clawd</a></li>
-        <li><span class="name">🔑 OpenAI API</span> <a href="https://platform.openai.com" target="_blank">platform.openai.com</a></li>
-        <li><span class="name">🔑 Anthropic API</span> <a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a></li>
-        <li><span class="name">🔑 Google AI Studio</span> <a href="https://aistudio.google.com" target="_blank">aistudio.google.com</a></li>
+        <li><span class="name">🦞 OpenClaw Docs</span> <a href="https://docs.openclaw.ai" target="_blank">docs.openclaw.ai ↗</a></li>
+        <li><span class="name">🔑 OpenAI API</span> <a href="https://platform.openai.com" target="_blank">platform.openai.com ↗</a></li>
+        <li><span class="name">🔑 Anthropic API</span> <a href="https://console.anthropic.com" target="_blank">console.anthropic.com ↗</a></li>
+        <li><span class="name">🔑 Google AI Studio</span> <a href="https://aistudio.google.com" target="_blank">aistudio.google.com ↗</a></li>
     </ul>
     <div class="challenge-box fade-in">
         <p><strong>🚀 Challenge: Build an AI Agent that saves you 2+ hours/week</strong></p>
@@ -784,7 +807,7 @@
 </section>
 
 <footer>
-    <p>HIKARI Forum 2026 — Built with 🦞 <a href="https://docs.openclaw.ai">OpenClaw</a></p>
+    <p>© <a href="https://aidia.uk">aidia</a> — HIKARI Forum 2026</p>
 </footer>
 
 <script>
@@ -798,6 +821,18 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+function copyCode(btn) {
+    const text = btn.parentElement.querySelector('span').textContent;
+    navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+            btn.textContent = 'Copy';
+            btn.classList.remove('copied');
+        }, 2000);
+    });
+}
 </script>
 
 </body>
