@@ -310,6 +310,30 @@
             color: var(--green);
             border: 1px solid rgba(0, 230, 150, 0.1);
             overflow-x: auto;
+            position: relative;
+        }
+        .copy-btn {
+            position: absolute;
+            top: 0.6rem;
+            right: 0.6rem;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--gray);
+            border-radius: 6px;
+            padding: 0.3rem 0.6rem;
+            font-size: 0.7rem;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.2s;
+        }
+        .copy-btn:hover {
+            background: rgba(255,255,255,0.15);
+            color: var(--white);
+        }
+        .copy-btn.copied {
+            background: rgba(0, 230, 150, 0.15);
+            color: var(--green);
+            border-color: rgba(0, 230, 150, 0.3);
         }
 
         /* WIZARD TABLE */
@@ -663,9 +687,9 @@
             <div class="step-num">2</div>
             <h3>Install OpenClaw</h3>
         </div>
-        <div class="code-block">npm install -g openclaw</div>
+        <div class="code-block"><span>npm install -g openclaw</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
         <p class="step-desc">Verify installation:</p>
-        <div class="code-block">openclaw --version</div>
+        <div class="code-block"><span>openclaw --version</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
         <p style="margin-top: 1rem; font-weight: 600;">That's it. OpenClaw is installed. 🎉</p>
     </div>
 
@@ -692,7 +716,7 @@
             <h3>Connect Everything</h3>
         </div>
         <p class="step-desc">Run the setup wizard:</p>
-        <div class="code-block">openclaw setup</div>
+        <div class="code-block"><span>openclaw setup</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
         <p class="step-desc" style="margin-top: 1.5rem;">The wizard will ask:</p>
         <ul class="wizard-list">
             <li><span class="wizard-key">🤖 Bot token</span> <span class="wizard-val">Paste from BotFather</span></li>
@@ -709,7 +733,7 @@
             <div class="step-num">5</div>
             <h3>Start Your Agent! 🚀</h3>
         </div>
-        <div class="code-block">openclaw gateway start</div>
+        <div class="code-block"><span>openclaw gateway start</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
         <p style="font-size: 1.2rem; font-weight: 600; margin: 1.5rem 0;">Open Telegram → Chat with your bot → It's alive! 🎉</p>
         <p class="step-desc">Try these messages:</p>
         <ul class="try-list">
@@ -798,6 +822,18 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+function copyCode(btn) {
+    const text = btn.parentElement.querySelector('span').textContent;
+    navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+            btn.textContent = 'Copy';
+            btn.classList.remove('copied');
+        }, 2000);
+    });
+}
 </script>
 
 </body>
