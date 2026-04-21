@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DLK × Aidia — Catatan Pemahaman Awal</title>
+  <meta name="description" content="Refleksi dan pemahaman awal dari percakapan pertama — ditulis untuk dibaca bersama, bukan untuk menjual.">
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧭</text></svg>">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Instrument+Serif&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --surface-2: #1c1c1c;
+      --border: #232323;
+      --border-soft: #1a1a1a;
+      --text: #e9e9e9;
+      --text-soft: #b8b8b8;
+      --muted: #7c7c7c;
+      --accent: #3b82f6;
+      --accent-glow: rgba(59, 130, 246, 0.12);
+      --warm: #e0a458;
+      --warm-soft: rgba(224, 164, 88, 0.08);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      font-weight: 400;
+    }
+
+    .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+
+    /* Header strip */
+    .topstrip {
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border-soft);
+      background: #070707;
+    }
+    .topstrip .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+      letter-spacing: 0.5px;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+    .topstrip .logo {
+      color: var(--text);
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .topstrip .logo span { color: var(--accent); }
+
+    /* Hero */
+    .hero {
+      padding: 88px 0 56px;
+      border-bottom: 1px solid var(--border-soft);
+    }
+    .hero .eyebrow {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--warm);
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-family: 'Instrument Serif', 'Inter', serif;
+      font-size: clamp(2.2rem, 6.5vw, 3.4rem);
+      line-height: 1.12;
+      letter-spacing: -1px;
+      font-weight: 400;
+      margin-bottom: 28px;
+    }
+    .hero h1 em {
+      color: var(--warm);
+      font-style: italic;
+    }
+    .hero p.sub {
+      font-size: 1.05rem;
+      color: var(--text-soft);
+      max-width: 600px;
+      line-height: 1.75;
+    }
+    .hero .meta {
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-soft);
+      font-size: 0.82rem;
+      color: var(--muted);
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .hero .meta span strong {
+      color: var(--text-soft);
+      font-weight: 500;
+    }
+
+    /* Section */
+    section {
+      padding: 72px 0;
+      border-bottom: 1px solid var(--border-soft);
+    }
+    section.warm {
+      background: linear-gradient(180deg, transparent 0%, var(--warm-soft) 100%);
+    }
+    .section-label {
+      font-size: 0.75rem;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    h2 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(1.8rem, 4.5vw, 2.4rem);
+      font-weight: 400;
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+      margin-bottom: 24px;
+    }
+    h2 em {
+      color: var(--warm);
+      font-style: italic;
+    }
+    p.lead {
+      font-size: 1.05rem;
+      color: var(--text-soft);
+      margin-bottom: 20px;
+    }
+    p { margin-bottom: 16px; color: var(--text-soft); }
+
+    /* What we heard — bullet list */
+    .heard-list {
+      list-style: none;
+      margin-top: 32px;
+    }
+    .heard-list li {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border-soft);
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+    .heard-list li:last-child { border-bottom: none; }
+    .heard-list .num {
+      flex-shrink: 0;
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.4rem;
+      color: var(--warm);
+      line-height: 1;
+      padding-top: 4px;
+      min-width: 32px;
+    }
+    .heard-list .text {
+      color: var(--text);
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+    .heard-list .text em {
+      font-style: normal;
+      color: var(--warm);
+      font-weight: 500;
+    }
+
+    /* Core challenge */
+    .challenge {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--warm);
+      padding: 40px 32px;
+      margin-top: 32px;
+      border-radius: 4px;
+    }
+    .challenge .quote-mark {
+      font-family: 'Instrument Serif', serif;
+      font-size: 3rem;
+      color: var(--warm);
+      line-height: 0.5;
+      margin-bottom: 16px;
+    }
+    .challenge p {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(1.2rem, 3vw, 1.55rem);
+      color: var(--text);
+      line-height: 1.5;
+      font-weight: 400;
+      margin-bottom: 0;
+    }
+    .challenge p em {
+      color: var(--warm);
+      font-style: italic;
+    }
+
+    /* 6 Layers diagnosis */
+    .layers {
+      margin-top: 32px;
+      display: grid;
+      gap: 16px;
+    }
+    .layer {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 24px 28px;
+      border-radius: 4px;
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      gap: 20px;
+      align-items: flex-start;
+      transition: border-color 0.2s;
+    }
+    .layer:hover { border-color: var(--accent); }
+    .layer .layer-num {
+      font-family: 'Instrument Serif', serif;
+      font-size: 2rem;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .layer .layer-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .layer .layer-desc {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    /* Phases */
+    .phases {
+      margin-top: 40px;
+      display: grid;
+      gap: 20px;
+    }
+    .phase {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 28px;
+      border-radius: 6px;
+      position: relative;
+    }
+    .phase.active {
+      border-color: var(--warm);
+      background: linear-gradient(180deg, var(--surface) 0%, var(--warm-soft) 100%);
+    }
+    .phase .phase-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 3px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    .phase .phase-tag.tag-now {
+      background: var(--warm);
+      color: #1a1a1a;
+    }
+    .phase .phase-tag.tag-next {
+      background: var(--border);
+      color: var(--text-soft);
+    }
+    .phase h3 {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 8px;
+      letter-spacing: -0.3px;
+    }
+    .phase .phase-duration {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+    .phase p {
+      font-size: 0.95rem;
+      color: var(--text-soft);
+      margin-bottom: 12px;
+    }
+    .phase ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 16px;
+    }
+    .phase ul li {
+      padding: 8px 0 8px 24px;
+      color: var(--text-soft);
+      font-size: 0.93rem;
+      position: relative;
+      line-height: 1.6;
+    }
+    .phase ul li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: var(--warm);
+      font-weight: 600;
+    }
+
+    /* Phase 1 detail */
+    .spotlight {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      padding: 36px 32px;
+      border-radius: 6px;
+      margin-top: 28px;
+    }
+    .spotlight .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 20px;
+      margin-top: 28px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+    .spotlight .metric {
+      text-align: left;
+    }
+    .spotlight .metric-value {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.8rem;
+      color: var(--warm);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .spotlight .metric-label {
+      font-size: 0.8rem;
+      color: var(--muted);
+      letter-spacing: 0.3px;
+    }
+
+    /* Positioning */
+    .positioning {
+      margin-top: 28px;
+      padding: 28px;
+      background: var(--surface);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 4px 4px 0;
+    }
+    .positioning .small {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--accent);
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+    .positioning p {
+      font-size: 1rem;
+      color: var(--text);
+      margin: 0;
+    }
+
+    /* Closing */
+    .closing {
+      padding: 96px 0;
+      text-align: center;
+    }
+    .closing h2 {
+      max-width: 560px;
+      margin: 0 auto 24px;
+    }
+    .closing p {
+      max-width: 520px;
+      margin: 0 auto 32px;
+      color: var(--text-soft);
+    }
+    .closing .signature {
+      margin-top: 40px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border-soft);
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+    .closing .signature strong {
+      color: var(--text-soft);
+      font-weight: 500;
+    }
+
+    footer {
+      padding: 32px 0 48px;
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border-soft);
+    }
+    footer a { color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
+
+    /* Fade-in animation */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 560px) {
+      .hero { padding: 64px 0 40px; }
+      section { padding: 56px 0; }
+      .challenge { padding: 28px 22px; }
+      .layer { padding: 20px; grid-template-columns: 40px 1fr; gap: 16px; }
+      .phase { padding: 22px; }
+      .spotlight { padding: 26px 22px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="topstrip">
+  <div class="container">
+    <a href="#" class="logo">Aidia<span>.</span></a>
+    <span>Catatan Pemahaman · 21.04.26</span>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="container">
+    <div class="eyebrow">Untuk Faisya &amp; Fais — DLK Group</div>
+    <h1>Bukan pitch. <em>Bukan proposal.</em><br>Ini catatan pemahaman — biar sebelum kita bicara solusi, kita sepakat dulu soal masalah.</h1>
+    <p class="sub">Halaman ini hanya untuk kalian berdua. Dibuat setelah percakapan kita hari Selasa, 21 April 2026 di kantor DLK. Ditulis agar bisa dibaca tenang di rumah, di-share ke adik, atau di-challenge kalau ada yang keliru. Kalau ada bagian yang salah tangkap, justru itu yang paling ingin saya dengar.</p>
+    <div class="meta">
+      <span><strong>Dari:</strong> Muslih (Aidia)</span>
+      <span><strong>Untuk:</strong> Faisya &amp; Fais</span>
+      <span><strong>Tanggal:</strong> 21 April 2026</span>
+      <span><strong>Sifat:</strong> Private · Unlisted</span>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="container">
+    <div class="section-label">01 · Yang Saya Dengar</div>
+    <h2>Sebuah bisnis yang <em>diwariskan</em>, dengan segala keindahan dan bebannya.</h2>
+    <p class="lead">Beberapa hal yang saya tangkap dari percakapan kita — saya coba ulang pakai kata-kata yang sedekat mungkin dengan apa yang Faisya sampaikan. Kalau ada yang miring, tolong koreksi.</p>
+
+    <ul class="heard-list">
+      <li>
+        <span class="num">01</span>
+        <span class="text">DLK sudah berjalan lebih dari satu generasi. Faisya dan Fais adalah <em>generasi ketiga</em> yang sekarang aktif menjalankan — setelah papi berpulang.</span>
+      </li>
+      <li>
+        <span class="num">02</span>
+        <span class="text">Armada forklift saat ini mencapai puluhan unit dengan variasi kapasitas dan ketinggian angkat yang beragam — dan masih akan bertambah dalam waktu dekat.</span>
+      </li>
+      <li>
+        <span class="num">03</span>
+        <span class="text">Puluhan operator aktif, hampir selalu <em>fully utilized</em> setiap harinya. Permintaan tidak kurang — tenaga justru yang sering jadi bottleneck.</span>
+      </li>
+      <li>
+        <span class="num">04</span>
+        <span class="text">Mayoritas customer adalah repeat order — relasi yang dibangun puluhan tahun. Inquiry masuk lewat WhatsApp dan telepon, dan yang handle pertama kali adalah <em>owner langsung</em> — Faisya atau Fais.</span>
+      </li>
+      <li>
+        <span class="num">05</span>
+        <span class="text">Pricing tidak pernah standar — selalu kontekstual: jenis industri, medan, kapasitas, durasi, lokasi. Itu sebabnya belum pernah di-otomasi — karena logikanya <em>hidup di kepala owner</em>.</span>
+      </li>
+      <li>
+        <span class="num">06</span>
+        <span class="text">Pencatatan sebagian besar <em>masih manual</em> — di buku tulis, di chat WhatsApp, sebagian di Excel. Tidak ada sistem yang menyatukan inquiry, SO, availability unit, dan invoice dalam satu tempat.</span>
+      </li>
+      <li>
+        <span class="num">07</span>
+        <span class="text">Faisya meyakini ada <em>kebocoran biaya</em> di operasional — insting itu benar — tapi sekarang tidak bisa di-pinpoint, karena tidak ada data terstruktur untuk dilihat. Bukti konkret: ada piutang lama yang baru ketahuan setelah Faisya aktif memeriksa.</span>
+      </li>
+      <li>
+        <span class="num">08</span>
+        <span class="text">Ambisi Faisya jelas: <em>scale unit dan scale bisnis</em> — tapi dengan syarat fundamental pencatatan dan pembukuan harus rapih dulu. Ini urutan yang banyak owner lewatkan. Faisya tidak.</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="warm">
+  <div class="container">
+    <div class="section-label">02 · Inti Tantangan</div>
+    <h2>Satu kalimat saja, jika boleh saya coba rangkum.</h2>
+
+    <div class="challenge">
+      <div class="quote-mark">"</div>
+      <p>DLK <em>mewarisi mesin operasional</em> yang sudah jalan puluhan tahun — tapi dashboard-nya belum pernah dibangun. Faisya tahu ada bleeding, tapi tidak bisa menghentikannya kalau tidak bisa melihatnya.</p>
+    </div>
+
+    <p class="lead" style="margin-top: 28px;">Kalau ini tidak sesuai cara Faisya melihatnya, saya mau dengar. Karena seluruh arah yang saya tawarkan berikut ini berdiri di atas kalimat ini.</p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-label">03 · Enam Lapisan yang Saling Mengikat</div>
+    <h2>"Semua serba manual" bukan <em>satu masalah</em> — itu enam lapisan yang saling mengunci.</h2>
+    <p class="lead">Yang bikin susah stop bleeding bukan karena salah satu dari ini besar — tapi karena semua saling reinforce. Menyelesaikan satu tanpa yang lain tidak akan rapih.</p>
+
+    <div class="layers">
+      <div class="layer">
+        <div class="layer-num">01</div>
+        <div>
+          <div class="layer-title">Tidak ada single source of truth</div>
+          <p class="layer-desc">SO di buku tulis. Availability unit di WA grup. Invoice di Excel. Data tentang bisnis yang sama, tinggal di 4 tempat berbeda. Setiap lapisan di bawah akhirnya ikut pecah.</p>
+        </div>
+      </div>
+      <div class="layer">
+        <div class="layer-num">02</div>
+        <div>
+          <div class="layer-title">Piutang tak terlacak</div>
+          <p class="layer-desc">Tanpa pencatatan sistematis, tagihan yang belum dibayar tidak otomatis muncul ke permukaan. Revenue yang sudah milik DLK, tapi belum masuk rekening.</p>
+        </div>
+      </div>
+      <div class="layer">
+        <div class="layer-num">03</div>
+        <div>
+          <div class="layer-title">Pricing sebagai "seni", bukan sistem</div>
+          <p class="layer-desc">Logika pricing yang kompleks hidup di kepala Faisya dan Fais. Tidak bisa didelegasikan, tidak bisa diaudit, tidak bisa dioptimasi — karena tidak pernah keluar dari kepala.</p>
+        </div>
+      </div>
+      <div class="layer">
+        <div class="layer-num">04</div>
+        <div>
+          <div class="layer-title">Owner bottleneck</div>
+          <p class="layer-desc">Dengan tim puluhan orang, inquiry pertama masih harus lewat owner. Ini melindungi kualitas service — tapi juga plafon yang membatasi berapa banyak inquiry bisa di-handle per hari.</p>
+        </div>
+      </div>
+      <div class="layer">
+        <div class="layer-num">05</div>
+        <div>
+          <div class="layer-title">Unit economics buta</div>
+          <p class="layer-desc">Unit mana paling menguntungkan? Customer mana paling strategis? Rental harian vs bulanan — selisih margin persisnya berapa? Jawaban belum ada, karena datanya belum ada.</p>
+        </div>
+      </div>
+      <div class="layer">
+        <div class="layer-num">06</div>
+        <div>
+          <div class="layer-title">Maintenance opacity</div>
+          <p class="layer-desc">Mekanik dikirim mingguan — ritmenya bagus. Tapi tanpa logbook per unit, tidak terlihat unit mana yang boros maintenance, kapan replace lebih baik daripada repair, atau mana yang dekat end-of-life.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-label">04 · Arah Pemikiran</div>
+    <h2>Bukan <em>install ERP</em>. Bukan <em>pasang AI tool</em>.<br>Tapi tiga fase yang berdiri di atas pondasi Faisya sendiri.</h2>
+    <p class="lead">Urutan penting. Fase 2 dan 3 tidak mungkin dibangun rapih kalau Fase 1 dilompati — itulah kenapa fokus pertama bukan yang paling "wow", tapi yang paling <em>fundamental</em>.</p>
+
+    <div class="phases">
+      <div class="phase active">
+        <div class="phase-tag tag-now">Mulai dari sini</div>
+        <h3>Fase 1 — Fondasi &amp; Visibilitas</h3>
+        <div class="phase-duration">± 60 hari</div>
+        <p>Menyatukan chain dari inquiry → SO → invoice menjadi satu sistem tunggal yang lightweight, cocok untuk tim yang sekarang pakai WA dan buku tulis. Plus satu quick win yang terasa dari bulan pertama.</p>
+        <ul>
+          <li>Digitalisasi alur inquiry, SO, dan invoice dalam satu tempat — tanpa memaksa tim lapangan meninggalkan WhatsApp</li>
+          <li>Audit backlog piutang — rekonstruksi dari buku tulis dan chat history, keluarkan daftar aging yang siap ditagih</li>
+          <li>Dashboard bulanan sederhana: revenue per unit, revenue per customer, piutang aging</li>
+          <li>Admin tunggal DLK dibantu sistem — bukan diganti</li>
+        </ul>
+      </div>
+
+      <div class="phase">
+        <div class="phase-tag tag-next">Setelah data terekam</div>
+        <h3>Fase 2 — Lapisan Kecerdasan</h3>
+        <div class="phase-duration">2–4 bulan setelah Fase 1</div>
+        <p>Ketika data 60–90 hari sudah terekam terstruktur, baru bisa dibangun lapisan yang benar-benar bernilai strategis — dan yang paling sering salah tempo kalau dimulai terlalu cepat.</p>
+        <ul>
+          <li>Pricing assistant — saran pricing untuk inquiry baru berdasarkan histori, tapi owner tetap approve final</li>
+          <li>Inquiry pre-qualification di WhatsApp — screening varian, medan, lokasi secara otomatis untuk case standar</li>
+          <li>Dashboard real-time untuk availability unit dan operator — menggantikan chaos WA grup</li>
+        </ul>
+      </div>
+
+      <div class="phase">
+        <div class="phase-tag tag-next">Setelah Fase 2 stabil</div>
+        <h3>Fase 3 — Scale Enablement</h3>
+        <div class="phase-duration">6+ bulan</div>
+        <p>Ketika visibilitas sudah ada dan operasional sudah efisien, barulah scale unit dan scale bisnis bisa dilakukan dengan <em>confidence</em> — bukan dengan harap-harap cemas.</p>
+        <ul>
+          <li>Maintenance logbook per unit — basis predictive maintenance</li>
+          <li>Customer relationship layer — segmentasi, loyalty, churn signal</li>
+          <li>Unit ROI modeling — bantu keputusan beli unit baru: kapasitas apa, berapa, kapan</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="warm">
+  <div class="container">
+    <div class="section-label">05 · Apa yang Fase 1 Janjikan</div>
+    <h2>Dalam 60 hari, satu kalimat sederhana jadi mungkin:</h2>
+
+    <div class="spotlight">
+      <p class="lead" style="color: var(--text); font-size: 1.15rem; font-weight: 500; margin-bottom: 0; line-height: 1.5;">
+        "Saya tahu persis berapa piutang yang outstanding. Saya tahu customer mana yang paling kontribusi ke revenue. Saya tahu unit mana yang paling profit. Saya tahu tiap rupiah ke mana perginya."
+      </p>
+
+      <div class="metric-grid">
+        <div class="metric">
+          <div class="metric-value">60 hari</div>
+          <div class="metric-label">Target Fase 1</div>
+        </div>
+        <div class="metric">
+          <div class="metric-value">1 tempat</div>
+          <div class="metric-label">Source of truth</div>
+        </div>
+        <div class="metric">
+          <div class="metric-value">Recovery</div>
+          <div class="metric-label">Piutang backlog</div>
+        </div>
+        <div class="metric">
+          <div class="metric-value">0 ganti</div>
+          <div class="metric-label">WhatsApp tetap dipakai</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="positioning">
+      <div class="small">Posisi Aidia di Sini</div>
+      <p>Bukan vendor software. Bukan konsultan per-jam. Aidia adalah <strong>virtual engineering</strong> — partner operasional yang membangun, merawat, dan mengiterasi sistem ini bersama DLK. Papi sudah membangun mesin yang jalan. Peran kami bantu kalian bangun dashboardnya — supaya mesin itu bisa kalian scale-kan tanpa bleeding.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container closing">
+    <div class="section-label">06 · Yang Saya Minta</div>
+    <h2>Bukan keputusan. Hanya <em>koreksi</em>.</h2>
+    <p>Kalau ada bagian dari catatan ini yang salah — atau ada yang saya lewatkan, atau ada konteks penting yang belum pernah saya dengar — itu yang paling saya butuhkan sekarang. Bukan deal, bukan kontrak. Kejelasan soal masalah dulu.</p>
+    <p>Kalau secara garis besar ini sudah sejalan dengan cara Faisya dan Fais melihat DLK, dari sini kita bisa obrolin arah Fase 1 lebih detail — online saja, 45–60 menit, kapan pun Faisya sempat.</p>
+
+    <div class="signature">
+      Ditulis dengan hormat, untuk <strong>Faisya &amp; Fais</strong>.<br>
+      <strong>Muslih</strong> — Aidia · 21 April 2026
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    Halaman ini private dan unlisted — hanya untuk DLK.<br>
+    <a href="https://aidia.uk">aidia.uk</a>
+  </div>
+</footer>
+
+<script>
+  // Fade-in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('section, .heard-list li, .layer, .phase').forEach(el => {
+    el.classList.add('fade-in');
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
