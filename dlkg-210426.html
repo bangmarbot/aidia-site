@@ -313,6 +313,30 @@
       color: var(--warm);
       font-weight: 600;
     }
+    .phase .sprint-block {
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px dashed var(--border);
+    }
+    .phase .sprint-block:first-of-type {
+      margin-top: 20px;
+      padding-top: 0;
+      border-top: none;
+    }
+    .phase .sprint-label {
+      font-size: 0.72rem;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--warm);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .phase .sprint-sub {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .phase .sprint-block ul { margin-top: 8px; }
 
     /* Phase 1 detail */
     .spotlight {
@@ -436,8 +460,8 @@
 <header class="hero">
   <div class="container">
     <div class="eyebrow">Untuk Faisya &amp; Fais — DLK Group</div>
-    <h1>Bukan pitch. <em>Bukan proposal.</em><br>Ini catatan pemahaman — biar sebelum kita bicara solusi, kita sepakat dulu soal masalah.</h1>
-    <p class="sub">Halaman ini hanya untuk kalian berdua. Dibuat setelah percakapan kita hari Selasa, 21 April 2026 di kantor DLK. Ditulis agar bisa dibaca tenang di rumah, di-share ke adik, atau di-challenge kalau ada yang keliru. Kalau ada bagian yang salah tangkap, justru itu yang paling ingin saya dengar.</p>
+    <h1>Catatan pemahaman —<br>biar sebelum kita bicara solusi, <em>kita sepakat dulu soal masalah.</em></h1>
+    <p class="sub">Halaman ini hanya untuk Faisya dan Fais. Dibuat setelah percakapan kita hari Selasa, 21 April 2026 di kantor DLK. Ditulis agar bisa dibaca tenang di rumah, di-share berdua, atau di-challenge kalau ada yang keliru. Kalau ada bagian yang salah tangkap, justru itu yang paling ingin saya dengar.</p>
     <div class="meta">
       <span><strong>Dari:</strong> Muslih (Aidia)</span>
       <span><strong>Untuk:</strong> Faisya &amp; Fais</span>
@@ -450,7 +474,7 @@
 <section>
   <div class="container">
     <div class="section-label">01 · Yang Saya Dengar</div>
-    <h2>Sebuah bisnis yang <em>diwariskan</em>, dengan segala keindahan dan bebannya.</h2>
+    <h2>Sebuah bisnis yang <em>diwariskan</em>, dengan segala kebaikan dan bebannya.</h2>
     <p class="lead">Beberapa hal yang saya tangkap dari percakapan kita — saya coba ulang pakai kata-kata yang sedekat mungkin dengan apa yang Faisya sampaikan. Kalau ada yang miring, tolong koreksi.</p>
 
     <ul class="heard-list">
@@ -493,14 +517,14 @@
 <section class="warm">
   <div class="container">
     <div class="section-label">02 · Inti Tantangan</div>
-    <h2>Satu kalimat saja, jika boleh saya coba rangkum.</h2>
+    <h2>Jika boleh saya coba rangkum.</h2>
 
     <div class="challenge">
       <div class="quote-mark">"</div>
       <p>DLK <em>mewarisi mesin operasional</em> yang sudah jalan puluhan tahun — tapi dashboard-nya belum pernah dibangun. Faisya tahu ada bleeding, tapi tidak bisa menghentikannya kalau tidak bisa melihatnya.</p>
     </div>
 
-    <p class="lead" style="margin-top: 28px;">Kalau ini tidak sesuai cara Faisya melihatnya, saya mau dengar. Karena seluruh arah yang saya tawarkan berikut ini berdiri di atas kalimat ini.</p>
+    <p class="lead" style="margin-top: 28px;">Kalau rangkuman ini meleset dari cara Faisya dan Fais melihat DLK sehari-hari, ini justru momen yang paling tepat untuk dikoreksi — karena seluruh arah pemikiran yang saya sampaikan setelah ini dibangun di atas pemahaman ini.</p>
   </div>
 </section>
 
@@ -566,15 +590,31 @@
     <div class="phases">
       <div class="phase active">
         <div class="phase-tag tag-now">Mulai dari sini</div>
-        <h3>Fase 1 — Fondasi &amp; Visibilitas</h3>
-        <div class="phase-duration">± 60 hari</div>
-        <p>Menyatukan chain dari inquiry → SO → invoice menjadi satu sistem tunggal yang lightweight, cocok untuk tim yang sekarang pakai WA dan buku tulis. Plus satu quick win yang terasa dari bulan pertama.</p>
-        <ul>
-          <li>Digitalisasi alur inquiry, SO, dan invoice dalam satu tempat — tanpa memaksa tim lapangan meninggalkan WhatsApp</li>
-          <li>Audit backlog piutang — rekonstruksi dari buku tulis dan chat history, keluarkan daftar aging yang siap ditagih</li>
-          <li>Dashboard bulanan sederhana: revenue per unit, revenue per customer, piutang aging</li>
-          <li>Admin tunggal DLK dibantu sistem — bukan diganti</li>
-        </ul>
+        <h3>Fase 1 — Pembukuan Proper &amp; Visibilitas</h3>
+        <div class="phase-duration">2 sprint · 30 + 30 hari</div>
+        <p>Fase ini dipecah dua sprint @30 hari. Sprint A menyelesaikan backlog data historis dan merapikan pipa data masuk — quick win sekaligus fondasi. Sprint B membangun pembukuan bulanan proper: opex, depresiasi, dan unit economics yang selama ini "hidup di kepala" jadi angka yang bisa dilihat.</p>
+
+        <div class="sprint-block">
+          <div class="sprint-label">Sprint A</div>
+          <div class="sprint-sub">Hari 1–30 · Rapihkan yang sudah ada, tangkap yang masuk</div>
+          <ul>
+            <li>Audit backlog piutang — rekonstruksi dari buku tulis dan chat history, keluarkan daftar aging yang siap ditagih</li>
+            <li>Digitalisasi alur masuk: inquiry → SO → invoice dalam satu sistem tunggal, tanpa memaksa tim lapangan meninggalkan WhatsApp</li>
+            <li>Asset register armada — seluruh unit forklift terdata: harga perolehan, tanggal masuk, metode depresiasi, nilai buku berjalan</li>
+            <li>Chart of accounts — struktur rekening standar untuk revenue, COGS, opex, dan overhead</li>
+          </ul>
+        </div>
+
+        <div class="sprint-block">
+          <div class="sprint-label">Sprint B</div>
+          <div class="sprint-sub">Hari 31–60 · Pembukuan bulanan proper + unit economics</div>
+          <ul>
+            <li>Opex capture pipeline — BBM per unit, biaya maintenance per unit, alokasi payroll operator dan mekanik, overhead kantor, biaya mobilitas</li>
+            <li>Financial close bulanan dengan depresiasi — P&amp;L yang proper, bukan sekedar <em>cashflow tracking</em></li>
+            <li>Dashboard unit economics: piutang aging, P&amp;L bulanan, revenue dan contribution margin per unit dan per customer</li>
+            <li>Admin tunggal DLK dibantu sistem — bukan diganti</li>
+          </ul>
+        </div>
       </div>
 
       <div class="phase">
@@ -616,37 +656,32 @@
 
       <div class="metric-grid">
         <div class="metric">
-          <div class="metric-value">60 hari</div>
-          <div class="metric-label">Target Fase 1</div>
+          <div class="metric-value">30 + 30</div>
+          <div class="metric-label">Hari, dua sprint terukur</div>
         </div>
         <div class="metric">
-          <div class="metric-value">1 tempat</div>
-          <div class="metric-label">Source of truth</div>
+          <div class="metric-value">1 sistem</div>
+          <div class="metric-label">Inquiry → SO → Invoice</div>
         </div>
         <div class="metric">
-          <div class="metric-value">Recovery</div>
-          <div class="metric-label">Piutang backlog</div>
+          <div class="metric-value">Piutang</div>
+          <div class="metric-label">Backlog audit + aging</div>
         </div>
         <div class="metric">
-          <div class="metric-value">0 ganti</div>
-          <div class="metric-label">WhatsApp tetap dipakai</div>
+          <div class="metric-value">Depresiasi</div>
+          <div class="metric-label">Nilai buku per unit</div>
         </div>
       </div>
-    </div>
-
-    <div class="positioning">
-      <div class="small">Posisi Aidia di Sini</div>
-      <p>Bukan vendor software. Bukan konsultan per-jam. Aidia adalah <strong>virtual engineering</strong> — partner operasional yang membangun, merawat, dan mengiterasi sistem ini bersama DLK. Papi sudah membangun mesin yang jalan. Peran kami bantu kalian bangun dashboardnya — supaya mesin itu bisa kalian scale-kan tanpa bleeding.</p>
     </div>
   </div>
 </section>
 
 <section>
   <div class="container closing">
-    <div class="section-label">06 · Yang Saya Minta</div>
-    <h2>Bukan keputusan. Hanya <em>koreksi</em>.</h2>
-    <p>Kalau ada bagian dari catatan ini yang salah — atau ada yang saya lewatkan, atau ada konteks penting yang belum pernah saya dengar — itu yang paling saya butuhkan sekarang. Bukan deal, bukan kontrak. Kejelasan soal masalah dulu.</p>
-    <p>Kalau secara garis besar ini sudah sejalan dengan cara Faisya dan Fais melihat DLK, dari sini kita bisa obrolin arah Fase 1 lebih detail — online saja, 45–60 menit, kapan pun Faisya sempat.</p>
+    <div class="section-label">06 · Sebelum Melangkah</div>
+    <h2>Ruang untuk <em>mengoreksi</em>, sebelum kita melangkah.</h2>
+    <p>Kalau ada bagian dari catatan ini yang salah — atau ada yang saya lewatkan, atau ada konteks penting yang belum pernah saya dengar — itu yang paling berharga untuk saya dengar sekarang. Kejelasan soal masalah dulu, sebelum apapun yang lain.</p>
+    <p>Kalau secara garis besar ini sudah sejalan dengan cara Faisya dan Fais melihat DLK, dari sini kita bisa obrolin arah Fase 1 lebih detail — 45–60 menit, online atau offline mengikuti preferensi Faisya dan Fais. Kapan pun sempat.</p>
 
     <div class="signature">
       Ditulis dengan hormat, untuk <strong>Faisya &amp; Fais</strong>.<br>
